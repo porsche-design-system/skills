@@ -1,0 +1,14 @@
+name: pds-web-accessibility-audit
+version: "1.0.0"
+description: >-
+  Deep-dive web accessibility audit skills and specialist agents.
+  Adapted from porsche-design-system/accessibility-agents web-audit bundle.
+type: hybrid
+license: MIT
+repository: https://github.com/porsche-design-system/skills
+homepage: https://github.com/porsche-design-system/skills/tree/main/packages/web-accessibility-audit
+keywords: [accessibility, wcag, a11y, audit, web]
+targets:
+  - copilot
+  - claude
+  - cursor

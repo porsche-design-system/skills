@@ -1,0 +1,13 @@
+**/apm_modules/
+**/.github/
+**/.claude/
+**/.claude-plugin/
+**/.cursor/
+**/.codex/
+**/.windsurf/
+**/.kiro/
+**/.opencode/
+**/.agents/
+.DS_Store
+*.log
+*.apm.zip
