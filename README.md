@@ -1,6 +1,6 @@
 # Porsche Design System Skills
 
-Monorepo of shareable [APM](https://microsoft.github.io/apm/) packages for AI agent skills used across Porsche Design System and related teams.
+Monorepo of shareable [APM](https://microsoft.github.io/apm/) packages for AI agent skills.
 
 ## Requirements
 
@@ -10,12 +10,12 @@ Monorepo of shareable [APM](https://microsoft.github.io/apm/) packages for AI ag
 
 | Package | Path | Description | Install |
 |---------|------|-------------|---------|
-| `pds-web-accessibility-audit` | [`packages/web-accessibility-audit`](packages/web-accessibility-audit) | Deep-dive web accessibility audit skills and specialist agents | `apm install porsche-design-system/skills/packages/web-accessibility-audit` |
+| `web-accessibility-audit` | [`packages/web-accessibility-audit`](packages/web-accessibility-audit) | Deep-dive web accessibility audit skills and specialist agents | `apm install porsche-design-system/skills/packages/web-accessibility-audit` |
 
 ## Install a package
 
 ```bash
-apm install porsche-design-system/skills/packages/web-accessibility-audit#v1.0.0
+apm install porsche-design-system/skills/packages/web-accessibility-audit#v0.0.1
 ```
 
 Or declare it in your project's `apm.yml`:
@@ -25,7 +25,7 @@ dependencies:
   apm:
     - git: https://github.com/porsche-design-system/skills.git
       path: packages/web-accessibility-audit
-      ref: v1.0.0
+      ref: v0.0.1
 ```
 
 Local development:
