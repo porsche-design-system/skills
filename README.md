@@ -10,7 +10,7 @@ Monorepo of shareable [APM](https://microsoft.github.io/apm/) packages for AI ag
 
 | Package | Path | Description | Install |
 |---------|------|-------------|---------|
-| `web-accessibility-audit` | [`packages/web-accessibility-audit`](packages/web-accessibility-audit) | Deep-dive web accessibility audit skills and specialist agents | `apm install porsche-design-system/skills/packages/web-accessibility-audit` |
+| `web-accessibility-audit` | [`packages/web-accessibility-audit`](packages/web-accessibility-audit) | Deep-dive web accessibility audit skills, agents, and initiation prompts | `apm install porsche-design-system/skills/packages/web-accessibility-audit` |
 
 ## Install a package
 

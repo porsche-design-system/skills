@@ -1,6 +1,6 @@
 # Web Accessibility Audit
 
-Deep-dive web accessibility audit skills and specialist agents for GitHub Copilot, Claude Code, and Cursor.
+Deep-dive web accessibility audit skills, specialist agents, and audit-initiation prompts for GitHub Copilot, Claude Code, and Cursor.
 
 Adapted from the [porsche-design-system/accessibility-agents](https://github.com/porsche-design-system/accessibility-agents) web-audit bundle.
 
@@ -22,10 +22,15 @@ dependencies:
 
 ## Usage
 
-After `apm install`, invoke the orchestrators in your harness:
+After `apm install`, start an audit with a prompt (Copilot `/` commands / Claude commands) or invoke an agent:
 
-- **Guided audit:** `@web-accessibility-wizard` (or the Claude/Cursor agent equivalent)
-- **Coordination / review:** `@accessibility-lead`
+| Start with | Use when |
+|------------|----------|
+| `web-accessibility-wizard` | Full single-page audit (axe + code review) |
+| `quick-web-check` | Fast axe-only triage |
+| `audit-web-multi-page` | Compare several pages |
+| `component-library-audit` | Audit a component library directory |
+| `review-a11y` / `@accessibility-lead` | Review specific UI files with specialists |
 
 Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognitive accessibility, design-system tokens, testing, WCAG reference, and scanner bridges (axe, Lighthouse, Playwright).
 
@@ -75,6 +80,18 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `design-system` | Token and contrast patterns |
 | `ci-integration` | CI pipeline guidance |
 
+### Prompts (5) — audit initiation only
+
+| Prompt file | Invokes as | Purpose |
+|-------------|------------|---------|
+| `web-accessibility-wizard.prompt.md` | `web-accessibility-wizard` | Full single-page audit |
+| `quick-web-check.prompt.md` | `quick-web-check` | Fast axe-only check |
+| `audit-web-multi-page.prompt.md` | `audit-web-multi-page` | Multi-page scorecard |
+| `component-library-audit.prompt.md` | `component-library-audit` | Component library audit |
+| `accessibility-lead.prompt.md` | `review-a11y` | File/component review via lead |
+
+Specialist, fix, compare, and CI-setup prompts from accessibility-agents are not included.
+
 ## Updating from accessibility-agents
 
 From the monorepo root:
@@ -103,7 +120,7 @@ apm install /absolute/path/to/skills/packages/web-accessibility-audit -t copilot
 
 ## Not included in v1
 
-Prompts/slash commands, always-on instructions, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
+Specialist/fix/compare/setup prompts, always-on instructions, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
 
 ## License
 
