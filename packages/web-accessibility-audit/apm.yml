@@ -1,6 +1,6 @@
 name: web-accessibility-audit
 version: "1.0.0"
-description: Deep-dive web accessibility audit skills, specialist agents, and audit-initiation prompts.
+description: Deep-dive web accessibility audit skills, agents, prompts, and instructions.
 type: hybrid
 license: MIT
 repository: https://github.com/porsche-design-system/skills

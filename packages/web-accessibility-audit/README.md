@@ -1,6 +1,6 @@
 # Web Accessibility Audit
 
-Deep-dive web accessibility audit skills, specialist agents, and audit-initiation prompts for GitHub Copilot, Claude Code, and Cursor.
+Deep-dive web accessibility audit skills, specialist agents, initiation/fix prompts, and always-on instructions for GitHub Copilot, Claude Code, and Cursor.
 
 Adapted from the [porsche-design-system/accessibility-agents](https://github.com/porsche-design-system/accessibility-agents) web-audit bundle.
 
@@ -93,6 +93,18 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `fix-web-issues.prompt.md` | `fix-web-issues-interactive` | Interactive fix from audit report |
 | `web-issue-fixer.prompt.md` | `fix-web-issues` | Apply fixes via web-issue-fixer agent |
 
+### Instructions (7) — always-on audit rules
+
+| Instruction | Applies to | Purpose |
+|-------------|------------|---------|
+| `web-accessibility-baseline` | HTML/JSX/Vue/Svelte/Astro | WCAG 2.2 AA baseline |
+| `semantic-html` | HTML/JSX/Vue/Svelte/Astro | Landmarks and native structure |
+| `aria-patterns` | HTML/JSX/Vue/Svelte/Astro | ARIA widgets and keyboard patterns |
+| `css-accessibility` | CSS/SCSS/Less | Focus, motion, contrast |
+| `testing-accessibility` | Test/spec files | Accessible query and keyboard tests |
+| `multi-agent-reliability` | Agent/markdown files | Structured findings and handoffs |
+| `agent-terminology` | Agent/markdown files | Shared severity and role terms |
+
 Specialist, compare, and CI-setup prompts from accessibility-agents are not included.
 
 ## Updating from accessibility-agents
@@ -123,7 +135,7 @@ apm install /absolute/path/to/skills/packages/web-accessibility-audit -t copilot
 
 ## Not included in v1
 
-Specialist, compare, and CI-setup prompts, always-on instructions, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
+Specialist, compare, and CI-setup prompts, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
 
 ## License
 
