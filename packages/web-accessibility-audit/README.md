@@ -66,7 +66,7 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `playwright-scanner` | Playwright scanning |
 | `playwright-verifier` | Playwright verification |
 
-### Skills (11)
+### Skills (10)
 
 | Skill | Purpose |
 |-------|---------|
@@ -80,7 +80,6 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `lighthouse-scanner` | Lighthouse a11y integration |
 | `cognitive-accessibility` | Cognitive criteria guidance |
 | `design-system` | Token and contrast patterns |
-| `ci-integration` | CI pipeline guidance |
 
 ### Prompts (7) — audit initiation + fix
 
