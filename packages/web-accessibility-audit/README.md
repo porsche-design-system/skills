@@ -31,6 +31,8 @@ After `apm install`, start an audit with a prompt (Copilot `/` commands / Claude
 | `audit-web-multi-page` | Compare several pages |
 | `component-library-audit` | Audit a component library directory |
 | `review-a11y` / `@accessibility-lead` | Review specific UI files with specialists |
+| `fix-web-issues-interactive` | Interactive remediation from an audit report |
+| `fix-web-issues` / `@web-issue-fixer` | Apply auto-fixable and guided fixes |
 
 Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognitive accessibility, design-system tokens, testing, WCAG reference, and scanner bridges (axe, Lighthouse, Playwright).
 
@@ -80,7 +82,7 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `design-system` | Token and contrast patterns |
 | `ci-integration` | CI pipeline guidance |
 
-### Prompts (5) — audit initiation only
+### Prompts (7) — audit initiation + fix
 
 | Prompt file | Invokes as | Purpose |
 |-------------|------------|---------|
@@ -89,8 +91,10 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `audit-web-multi-page.prompt.md` | `audit-web-multi-page` | Multi-page scorecard |
 | `component-library-audit.prompt.md` | `component-library-audit` | Component library audit |
 | `accessibility-lead.prompt.md` | `review-a11y` | File/component review via lead |
+| `fix-web-issues.prompt.md` | `fix-web-issues-interactive` | Interactive fix from audit report |
+| `web-issue-fixer.prompt.md` | `fix-web-issues` | Apply fixes via web-issue-fixer agent |
 
-Specialist, fix, compare, and CI-setup prompts from accessibility-agents are not included.
+Specialist, compare, and CI-setup prompts from accessibility-agents are not included.
 
 ## Updating from accessibility-agents
 
@@ -120,7 +124,7 @@ apm install /absolute/path/to/skills/packages/web-accessibility-audit -t copilot
 
 ## Not included in v1
 
-Specialist/fix/compare/setup prompts, always-on instructions, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
+Specialist, compare, and CI-setup prompts, always-on instructions, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
 
 ## License
 
