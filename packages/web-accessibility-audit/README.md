@@ -7,7 +7,7 @@ Adapted from the [porsche-design-system/accessibility-agents](https://github.com
 ## Install
 
 ```bash
-apm install porsche-design-system/skills/packages/web-accessibility-audit#v0.0.1
+apm install porsche-design-system/skills/packages/web-accessibility-audit#v1.0.0
 ```
 
 Or in your project's `apm.yml`:
@@ -17,7 +17,7 @@ dependencies:
   apm:
     - git: https://github.com/porsche-design-system/skills.git
       path: packages/web-accessibility-audit
-      ref: v0.0.1
+      ref: v1.0.0
 ```
 
 ## Usage
