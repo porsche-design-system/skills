@@ -1,5 +1,5 @@
 ---
-name: fix-web-issues
+name: a11y-issue-fixer
 description: Web accessibility fix applier. Handles auto-fixable issues (missing alt, lang, labels, tabindex) and presents human-judgment fixes for approval. Framework-specific code generation.
 mode: agent
 agent: web-issue-fixer

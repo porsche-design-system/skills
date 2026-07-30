@@ -1,5 +1,5 @@
 ---
-name: review-a11y
+name: a11y-lead
 description: Accessibility team lead and orchestrator. Coordinates specialist agents for web UI code review. Use proactively on every task involving HTML, JSX, CSS, React components, or any user-facing web content.
 mode: agent
 agent: accessibility-lead

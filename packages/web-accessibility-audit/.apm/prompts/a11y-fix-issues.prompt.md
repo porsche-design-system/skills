@@ -1,5 +1,5 @@
 ---
-name: fix-web-issues-interactive
+name: a11y-fix-issues-interactive
 description: Fix accessibility issues from a previous audit report. Applies auto-fixable changes and walks through human-judgment fixes one by one.
 mode: agent
 tools:

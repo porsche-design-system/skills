@@ -26,13 +26,13 @@ After `apm install`, start an audit with a prompt (Copilot `/` commands / Claude
 
 | Start with | Use when |
 |------------|----------|
-| `web-accessibility-wizard` | Full single-page audit (axe + code review) |
-| `quick-web-check` | Fast axe-only triage |
-| `audit-web-multi-page` | Compare several pages |
-| `component-library-audit` | Audit a component library directory |
-| `review-a11y` / `@accessibility-lead` | Review specific UI files with specialists |
-| `fix-web-issues-interactive` | Interactive remediation from an audit report |
-| `fix-web-issues` / `@web-issue-fixer` | Apply auto-fixable and guided fixes |
+| `a11y-wizard` | Full single-page audit (axe + code review) |
+| `a11y-quick-check` | Fast axe-only triage |
+| `a11y-audit-multi-page` | Compare several pages |
+| `a11y-component-library-audit` | Audit a component library directory |
+| `a11y-lead` / `@accessibility-lead` | Review specific UI files with specialists |
+| `a11y-fix-issues-interactive` | Interactive remediation from an audit report |
+| `a11y-issue-fixer` / `@web-issue-fixer` | Apply auto-fixable and guided fixes |
 
 Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognitive accessibility, design-system tokens, testing, WCAG reference, and scanner bridges (axe, Lighthouse, Playwright).
 
@@ -85,13 +85,13 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 
 | Prompt file | Invokes as | Purpose |
 |-------------|------------|---------|
-| `web-accessibility-wizard.prompt.md` | `web-accessibility-wizard` | Full single-page audit |
-| `quick-web-check.prompt.md` | `quick-web-check` | Fast axe-only check |
-| `audit-web-multi-page.prompt.md` | `audit-web-multi-page` | Multi-page scorecard |
-| `component-library-audit.prompt.md` | `component-library-audit` | Component library audit |
-| `accessibility-lead.prompt.md` | `review-a11y` | File/component review via lead |
-| `fix-web-issues.prompt.md` | `fix-web-issues-interactive` | Interactive fix from audit report |
-| `web-issue-fixer.prompt.md` | `fix-web-issues` | Apply fixes via web-issue-fixer agent |
+| `a11y-wizard.prompt.md` | `a11y-wizard` | Full single-page audit |
+| `a11y-quick-check.prompt.md` | `a11y-quick-check` | Fast axe-only check |
+| `a11y-audit-multi-page.prompt.md` | `a11y-audit-multi-page` | Multi-page scorecard |
+| `a11y-component-library-audit.prompt.md` | `a11y-component-library-audit` | Component library audit |
+| `a11y-lead.prompt.md` | `a11y-lead` | File/component review via lead |
+| `a11y-fix-issues.prompt.md` | `a11y-fix-issues-interactive` | Interactive fix from audit report |
+| `a11y-issue-fixer.prompt.md` | `a11y-issue-fixer` | Apply fixes via web-issue-fixer agent |
 
 ### Instructions (7) — always-on audit rules
 

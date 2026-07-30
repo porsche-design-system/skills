@@ -1,5 +1,5 @@
 ---
-name: component-library-audit
+name: a11y-component-library-audit
 description: Audit every component in a component library directory for accessibility. Generates a per-component scorecard with severity-ranked issues.
 mode: agent
 tools:

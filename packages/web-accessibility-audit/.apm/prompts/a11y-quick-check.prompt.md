@@ -1,5 +1,5 @@
 ---
-name: quick-web-check
+name: a11y-quick-check
 description: Quick accessibility triage of a web page. Runtime axe-core scan only - no code review. Fast pass/fail verdict with score.
 mode: agent
 tools:
