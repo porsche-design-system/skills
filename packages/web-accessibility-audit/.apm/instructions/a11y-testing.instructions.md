@@ -5,8 +5,8 @@ applyTo: "**/*.{test,spec}.{js,ts,jsx,tsx}"
 
 ## Dependencies
 
-- `web-accessibility-baseline.instructions.md` — the WCAG rules these tests verify
-- `aria-patterns.instructions.md` — the keyboard interaction patterns to test for composite widgets
+- `a11y-baseline.instructions.md` — the WCAG rules these tests verify
+- `a11y-aria-patterns.instructions.md` — the keyboard interaction patterns to test for composite widgets
 
 # Accessibility Testing Enforcement
 

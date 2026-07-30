@@ -5,8 +5,8 @@ applyTo: "**/*.{html,jsx,tsx,vue,svelte,astro}"
 
 ## Dependencies
 
-- `web-accessibility-baseline.instructions.md` — baseline WCAG rules; this file provides the structural HTML patterns that the baseline requires
-- `aria-patterns.instructions.md` — the ARIA widget patterns to use when native HTML is not sufficient
+- `a11y-baseline.instructions.md` — baseline WCAG rules; this file provides the structural HTML patterns that the baseline requires
+- `a11y-aria-patterns.instructions.md` — the ARIA widget patterns to use when native HTML is not sufficient
 
 # Semantic HTML Patterns
 
@@ -120,7 +120,7 @@ Use `<table>` for tabular data - any data that has a meaningful relationship bet
 
 ---
 
-> **Impact:** See `web-accessibility-baseline.instructions.md` § Forms and Inputs for the full labeling rules. This section provides the structural HTML patterns.
+> **Impact:** See `a11y-baseline.instructions.md` § Forms and Inputs for the full labeling rules. This section provides the structural HTML patterns.
 
 ## Forms
 
@@ -178,7 +178,7 @@ Use `<table>` for tabular data - any data that has a meaningful relationship bet
 
 No JavaScript required. Browser handles open/close, keyboard, and AT announcements.
 
-**When to use ARIA instead:** When visual design requirements cannot be met with `<details>` (e.g., animated transitions, custom styling that `<summary>` marker doesn't allow), use the ARIA accordion pattern (see `aria-patterns.instructions.md`). Visual design is a legitimate reason to reach for ARIA here — but only after confirming `<details>` genuinely cannot meet the requirement.
+**When to use ARIA instead:** When visual design requirements cannot be met with `<details>` (e.g., animated transitions, custom styling that `<summary>` marker doesn't allow), use the ARIA accordion pattern (see `a11y-aria-patterns.instructions.md`). Visual design is a legitimate reason to reach for ARIA here — but only after confirming `<details>` genuinely cannot meet the requirement.
 
 ---
 
@@ -197,7 +197,7 @@ No JavaScript required. Browser handles open/close, keyboard, and AT announcemen
 </dialog>
 ```
 
-Open with `dialog.showModal()`. The browser handles focus trapping, `Escape` key, and backdrop automatically. When `showModal()` is not available or polyfill constraints apply, use the ARIA dialog pattern (see `aria-patterns.instructions.md`).
+Open with `dialog.showModal()`. The browser handles focus trapping, `Escape` key, and backdrop automatically. When `showModal()` is not available or polyfill constraints apply, use the ARIA dialog pattern (see `a11y-aria-patterns.instructions.md`).
 
 ---
 

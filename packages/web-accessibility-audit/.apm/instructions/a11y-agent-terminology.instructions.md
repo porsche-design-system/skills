@@ -101,4 +101,4 @@ This glossary is derived from:
 - [WCAG 2.2](https://www.w3.org/TR/WCAG22/)
 - [axe-core severity taxonomy](https://github.com/dequelabs/axe-core)
 - [WAI-ARIA 1.2](https://www.w3.org/TR/wai-aria-1.2/)
-- Internal multi-agent-reliability standards (see `.github/instructions/multi-agent-reliability.instructions.md`)
+- Internal multi-agent-reliability standards (see `.github/instructions/a11y-multi-agent-reliability.instructions.md`)

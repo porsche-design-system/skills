@@ -5,8 +5,8 @@ applyTo: "**/*.{html,jsx,tsx,vue,svelte,astro}"
 
 ## Dependencies
 
-- `web-accessibility-baseline.instructions.md` — WCAG AA baseline rules this file extends
-- `semantic-html.instructions.md` — native HTML alternatives to prefer before reaching for ARIA roles
+- `a11y-baseline.instructions.md` — WCAG AA baseline rules this file extends
+- `a11y-semantic-html.instructions.md` — native HTML alternatives to prefer before reaching for ARIA roles
 
 # ARIA Widget Patterns
 

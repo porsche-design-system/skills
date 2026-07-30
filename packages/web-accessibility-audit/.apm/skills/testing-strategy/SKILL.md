@@ -72,7 +72,7 @@ Is it a new component or page?
 
 ### Preventing Regressions
 
-- Add accessibility assertions to existing component tests (see `testing-accessibility.instructions.md`)
+- Add accessibility assertions to existing component tests (see `a11y-testing.instructions.md`)
 - Include keyboard navigation in E2E test suites
 - Track accessibility score trends over time (not just pass/fail)
 

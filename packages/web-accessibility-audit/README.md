@@ -97,13 +97,13 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 
 | Instruction | Applies to | Purpose |
 |-------------|------------|---------|
-| `web-accessibility-baseline` | HTML/JSX/Vue/Svelte/Astro | WCAG 2.2 AA baseline |
-| `semantic-html` | HTML/JSX/Vue/Svelte/Astro | Landmarks and native structure |
-| `aria-patterns` | HTML/JSX/Vue/Svelte/Astro | ARIA widgets and keyboard patterns |
-| `css-accessibility` | CSS/SCSS/Less | Focus, motion, contrast |
-| `testing-accessibility` | Test/spec files | Accessible query and keyboard tests |
-| `multi-agent-reliability` | Agent/markdown files | Structured findings and handoffs |
-| `accessibility-agent-terminology` | Agent/markdown files | Shared severity and role terms |
+| `a11y-baseline` | HTML/JSX/Vue/Svelte/Astro | WCAG 2.2 AA baseline |
+| `a11y-semantic-html` | HTML/JSX/Vue/Svelte/Astro | Landmarks and native structure |
+| `a11y-aria-patterns` | HTML/JSX/Vue/Svelte/Astro | ARIA widgets and keyboard patterns |
+| `a11y-css` | CSS/SCSS/Less | Focus, motion, contrast |
+| `a11y-testing` | Test/spec files | Accessible query and keyboard tests |
+| `a11y-multi-agent-reliability` | Agent/markdown files | Structured findings and handoffs |
+| `a11y-agent-terminology` | Agent/markdown files | Shared severity and role terms |
 
 Specialist, compare, and CI-setup prompts from accessibility-agents are not included.
 

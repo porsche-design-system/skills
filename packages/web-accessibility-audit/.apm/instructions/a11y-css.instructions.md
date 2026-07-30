@@ -5,7 +5,7 @@ applyTo: "**/*.{css,scss,less}"
 
 ## Dependencies
 
-- `web-accessibility-baseline.instructions.md` — defines the WCAG contrast ratios and focus requirements that this file enforces at the CSS level
+- `a11y-baseline.instructions.md` — defines the WCAG contrast ratios and focus requirements that this file enforces at the CSS level
 
 # CSS Accessibility Enforcement
 
