@@ -103,7 +103,7 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `css-accessibility` | CSS/SCSS/Less | Focus, motion, contrast |
 | `testing-accessibility` | Test/spec files | Accessible query and keyboard tests |
 | `multi-agent-reliability` | Agent/markdown files | Structured findings and handoffs |
-| `agent-terminology` | Agent/markdown files | Shared severity and role terms |
+| `accessibility-agent-terminology` | Agent/markdown files | Shared severity and role terms |
 
 Specialist, compare, and CI-setup prompts from accessibility-agents are not included.
 

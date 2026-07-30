@@ -7,7 +7,7 @@ applyTo: "**/*.{md,agent.md}"
 
 None required. This is a foundational reliability standard that all other agent files should reference.
 
-**Shared terminology:** All severity levels, confidence terms, and role labels used in this file are defined in `agent-terminology.instructions.md`. When in doubt, consult that file before using a term.
+**Shared terminology:** All severity levels, confidence terms, and role labels used in this file are defined in `accessibility-agent-terminology.instructions.md`. When in doubt, consult that file before using a term.
 
 # Multi-Agent Workflow Reliability Standards
 
