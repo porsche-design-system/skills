@@ -14,7 +14,7 @@ Audit multiple pages of a web application and generate a comparative scorecard. 
 
 ## Instructions
 
-Use the **web-accessibility-wizard** agent workflow:
+Use the **a11y-audit** agent workflow:
 
 1. Use askQuestions to ask the user:
    - "What is the base URL of your application?"
@@ -24,7 +24,7 @@ Use the **web-accessibility-wizard** agent workflow:
 
 2. For each page, run the selected audit method:
    - **Runtime scan:** `npx @axe-core/cli <URL> --tags wcag2a,wcag2aa,wcag21a,wcag21aa`
-   - **Code review:** Run specialist sub-agents on the page components
+   - **Code review:** Run domain skills on the page components
 
 3. Compute per-page severity scores (0-100) and letter grades
 
@@ -39,7 +39,7 @@ Use the **web-accessibility-wizard** agent workflow:
 
 ## Handoff Transparency
 
-This workflow delegates to multiple specialist sub-agents across multiple pages. Announce each transition:
+This workflow delegates to multiple domain skills across multiple pages. Announce each transition:
 
 - **Before delegation:** "Auditing page [N/total]: [URL] - running [phase name]..."
 - **After completion:** Summarize per-page results before moving to cross-page analysis

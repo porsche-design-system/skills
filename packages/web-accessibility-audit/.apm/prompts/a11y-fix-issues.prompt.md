@@ -14,7 +14,7 @@ Interactive fix mode - reads a previous audit report and applies fixes. Auto-fix
 
 ## Instructions
 
-Use the **web-accessibility-wizard** agent's interactive fix mode:
+Use the **a11y-audit** agent's interactive fix mode:
 
 1. Use askQuestions to ask:
    - "What is the path to the audit report?" - default: `ACCESSIBILITY-AUDIT.md`
@@ -65,7 +65,7 @@ Use the **web-accessibility-wizard** agent's interactive fix mode:
 
 ## Handoff Transparency
 
-This workflow delegates to the `web-issue-fixer` sub-agent. Announce transitions:
+This workflow uses the **a11y-audit** with the `a11y-issue-fixer` skill. Announce transitions:
 
 - **Before delegation:** "Applying [N] fixes to [N] files ([N] auto-fixable, [N] need approval)"
 - **Per fix:** Show the issue, before/after code, and result

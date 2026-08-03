@@ -2,7 +2,7 @@
 name: a11y-issue-fixer
 description: Web accessibility fix applier. Handles auto-fixable issues (missing alt, lang, labels, tabindex) and presents human-judgment fixes for approval. Framework-specific code generation.
 mode: agent
-agent: web-issue-fixer
+agent: a11y-audit
 tools:
   - askQuestions
   - readFile
@@ -21,6 +21,9 @@ Apply accessibility fixes to web source code. Auto-fix safe changes, present hum
 **Input:** `${input:auditFile}` (ACCESSIBILITY-AUDIT.md or audit JSON)
 
 ## Instructions
+
+Use the **a11y-audit** with the `a11y-issue-fixer` skill:
+
 
 ### Step 1: Load Audit Report
 

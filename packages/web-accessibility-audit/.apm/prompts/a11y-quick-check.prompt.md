@@ -25,7 +25,7 @@ Fast triage - run axe-core against a live URL and get a pass/fail verdict. No co
 
 ## Instructions
 
-Use the **web-accessibility-wizard** agent workflow in quick mode:
+Use the **a11y-audit** agent workflow in quick mode:
 
 1. Skip Phase 0 discovery - settings are pre-configured above
 2. Run axe-core against the URL:

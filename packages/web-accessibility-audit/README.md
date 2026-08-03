@@ -1,6 +1,6 @@
 # Web Accessibility Audit
 
-Deep-dive web accessibility audit skills, specialist agents, initiation/fix prompts, and always-on instructions for GitHub Copilot, Claude Code, and Cursor.
+Deep-dive web accessibility audit package for GitHub Copilot, Claude Code, and Cursor: **one agent** (`a11y-audit`) that loads domain and ops skills on demand, plus initiation/fix prompts and always-on instructions.
 
 Adapted from the [porsche-design-system/accessibility-agents](https://github.com/porsche-design-system/accessibility-agents) web-audit bundle.
 
@@ -22,76 +22,79 @@ dependencies:
 
 ## Usage
 
-After `apm install`, start an audit with a prompt (Copilot `/` commands / Claude commands) or invoke an agent:
+After `apm install`, start an audit with a prompt. Every entry point uses the **a11y-audit**; domain and ops skills are loaded per phase.
 
 | Start with | Use when |
 |------------|----------|
-| `a11y-wizard` | Full single-page audit (axe + code review) |
+| `a11y-audit` | Full single-page audit (axe + code review) |
 | `a11y-quick-check` | Fast axe-only triage |
 | `a11y-audit-multi-page` | Compare several pages |
 | `a11y-component-library-audit` | Audit a component library directory |
-| `a11y-lead` / `@accessibility-lead` | Review specific UI files with specialists |
+| `a11y-lead` | Review specific UI files (a11y-audit review mode) |
 | `a11y-fix-issues-interactive` | Interactive remediation from an audit report |
-| `a11y-issue-fixer` / `@web-issue-fixer` | Apply auto-fixable and guided fixes |
+| `a11y-issue-fixer` | Apply auto-fixable and guided fixes (a11y-audit + `a11y-issue-fixer` skill) |
 
-Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognitive accessibility, design-system tokens, testing, WCAG reference, and scanner bridges (axe, Lighthouse, Playwright).
+## Architecture
+
+```text
+User → a11y-* prompts → a11y-audit (sole agent)
+                              └─ Read domain + ops skills by phase
+```
 
 ## Inventory
 
-### Agents (22)
+### Agents (1)
 
 | Agent | Role |
 |-------|------|
-| `accessibility-lead` | Orchestrator and final review |
-| `web-accessibility-wizard` | Guided multi-phase web audit |
-| `aria-specialist` | ARIA roles, states, properties |
-| `alt-text-headings` | Images, alt text, headings, landmarks |
-| `keyboard-navigator` | Tab order and focus |
-| `modal-specialist` | Dialogs and overlays |
-| `forms-specialist` | Forms, labels, validation |
-| `contrast-master` | Color contrast and visual design |
-| `live-region-controller` | Dynamic content and status |
-| `tables-data-specialist` | Data tables and grids |
-| `link-checker` | Link text quality |
-| `testing-coach` | Testing guidance |
-| `wcag-guide` | WCAG 2.2 criteria |
-| `text-quality-reviewer` | Non-visual text quality |
-| `cognitive-accessibility` | Cognitive SC and COGA |
-| `design-system-auditor` | Token and focus-ring contrast |
-| `cross-page-analyzer` | Multi-page audit scoring |
-| `web-issue-fixer` | Remediation |
-| `web-csv-reporter` | CSV reporting |
-| `lighthouse-bridge` | Lighthouse integration |
-| `playwright-scanner` | Playwright scanning |
-| `playwright-verifier` | Playwright verification |
+| `a11y-audit` | Sole orchestrator: full audit, file review, fixes, export, scanners via skills |
 
-### Skills (9)
+### Domain skills (14)
 
 | Skill | Purpose |
 |-------|---------|
-| `web-scanning` | URL crawling, axe-core CLI, page inventory |
-| `web-severity-scoring` | Severity and grade scoring |
-| `framework-accessibility` | Framework-specific patterns |
-| `playwright-testing` | Playwright a11y verification |
-| `testing-strategy` | Manual and automated strategy |
-| `help-url-reference` | WCAG/ARIA reference URLs |
-| `lighthouse-scanner` | Lighthouse a11y integration |
-| `cognitive-accessibility` | Cognitive criteria guidance |
-| `design-system` | Token and contrast patterns |
+| `a11y-aria` | ARIA roles, states, properties |
+| `a11y-alt-text-headings` | Images, alt text, headings, landmarks |
+| `a11y-keyboard` | Tab order and focus |
+| `a11y-modal` | Dialogs and overlays |
+| `a11y-forms` | Forms, labels, validation |
+| `a11y-contrast` | Color contrast and visual design |
+| `a11y-live-regions` | Dynamic content and status |
+| `a11y-tables` | Data tables and grids |
+| `a11y-links` | Link text quality |
+| `a11y-text-quality` | Non-visual text quality |
+| `a11y-cognitive` | Cognitive SC and COGA |
+| `a11y-design-system` | Token and focus-ring contrast |
+| `a11y-testing-coach` | Testing guidance |
+| `a11y-wcag-guide` | WCAG 2.2 criteria |
+
+### Ops skills (9)
+
+| Skill | Purpose |
+|-------|---------|
+| `a11y-web-scanning` | URL crawling, axe-core CLI, page inventory |
+| `a11y-severity-scoring` | Severity, grade scoring, cross-page analysis |
+| `a11y-framework` | Framework-specific patterns |
+| `a11y-playwright` | Playwright scan + fix verification |
+| `a11y-testing-strategy` | Manual and automated strategy |
+| `a11y-help-url-reference` | WCAG/ARIA reference URLs |
+| `a11y-lighthouse` | Lighthouse a11y integration |
+| `a11y-issue-fixer` | Apply guided / auto fixes |
+| `a11y-csv-reporter` | CSV/JSON export of findings |
 
 ### Prompts (7) — audit initiation + fix
 
 | Prompt file | Invokes as | Purpose |
 |-------------|------------|---------|
-| `a11y-wizard.prompt.md` | `a11y-wizard` | Full single-page audit |
+| `a11y-audit.prompt.md` | `a11y-audit` | Full single-page audit |
 | `a11y-quick-check.prompt.md` | `a11y-quick-check` | Fast axe-only check |
 | `a11y-audit-multi-page.prompt.md` | `a11y-audit-multi-page` | Multi-page scorecard |
 | `a11y-component-library-audit.prompt.md` | `a11y-component-library-audit` | Component library audit |
-| `a11y-lead.prompt.md` | `a11y-lead` | File/component review via lead |
+| `a11y-lead.prompt.md` | `a11y-lead` | File/component review via a11y-audit |
 | `a11y-fix-issues.prompt.md` | `a11y-fix-issues-interactive` | Interactive fix from audit report |
-| `a11y-issue-fixer.prompt.md` | `a11y-issue-fixer` | Apply fixes via web-issue-fixer agent |
+| `a11y-issue-fixer.prompt.md` | `a11y-issue-fixer` | Apply fixes via a11y-audit + skill |
 
-### Instructions (7) — always-on audit rules
+### Instructions (7) — always-on coding rules
 
 | Instruction | Applies to | Purpose |
 |-------------|------------|---------|
@@ -100,10 +103,8 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `a11y-aria-patterns` | HTML/JSX/Vue/Svelte/Astro | ARIA widgets and keyboard patterns |
 | `a11y-css` | CSS/SCSS/Less | Focus, motion, contrast |
 | `a11y-testing` | Test/spec files | Accessible query and keyboard tests |
-| `a11y-multi-agent-reliability` | Agent/markdown files | Structured findings and handoffs |
+| `a11y-finding-reliability` | Agent/markdown files | Structured findings format |
 | `a11y-agent-terminology` | Agent/markdown files | Shared severity and role terms |
-
-Specialist, compare, and CI-setup prompts from accessibility-agents are not included.
 
 ## Updating from accessibility-agents
 
@@ -113,6 +114,13 @@ From the monorepo root:
 node scripts/extract-from-accessibility-agents.mjs \
   --source /path/to/accessibility-agents
 ```
+
+The extract script:
+
+1. Copies ops skills and the a11y-audit agent only (no specialist/bridge agents)
+2. Migrates specialist and bridge agent bodies into skills
+3. Rewrites a11y-audit to load those skills
+4. Retargets all prompts to the single agent
 
 Defaults: `--source` from `A11Y_AGENTS_SOURCE` or `../APM/accessibility-agents`; `--package packages/web-accessibility-audit`.
 
@@ -133,7 +141,7 @@ apm install /absolute/path/to/skills/packages/web-accessibility-audit -t copilot
 
 ## Not included in v1
 
-Specialist, compare, and CI-setup prompts, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
+Compare/CI-setup prompts, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
 
 ## License
 

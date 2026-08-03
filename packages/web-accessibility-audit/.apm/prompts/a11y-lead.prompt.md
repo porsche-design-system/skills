@@ -1,8 +1,8 @@
 ---
 name: a11y-lead
-description: Accessibility team lead and orchestrator. Coordinates specialist agents for web UI code review. Use proactively on every task involving HTML, JSX, CSS, React components, or any user-facing web content.
+description: Review specific web UI files for WCAG 2.2 AA using the a11y-audit agent in review mode (loads domain skills on demand).
 mode: agent
-agent: accessibility-lead
+agent: a11y-audit
 tools:
   - askQuestions
   - readFile
@@ -13,7 +13,7 @@ tools:
 
 # Accessibility Review
 
-Run a comprehensive accessibility review of web UI code. Coordinates all specialist agents (ARIA, keyboard, contrast, forms, modals, etc.) to ensure WCAG 2.2 AA compliance.
+Run a focused accessibility review of web UI code using the **a11y-audit** agent in review mode. Load domain skills on demand.
 
 ## Component to Review
 
@@ -39,29 +39,31 @@ Read all relevant files:
 - Related components (child/parent components)
 - Event handlers and state management
 
-### Step 3: Coordinate Specialist Reviews
+### Step 3: Load Domain Skills and Review
 
-Invoke specialist agents via Task tool based on component features:
+Read and apply domain skills based on component features:
 
-**Always invoke:**
+**Always load:**
 
-- `keyboard-navigator` -- Tab order, focus management, keyboard shortcuts
-- `alt-text-headings` -- Images, heading structure, landmarks
+- `a11y-keyboard` -- Tab order, focus management, keyboard shortcuts
+- `a11y-alt-text-headings` -- Images, heading structure, landmarks
 
-**Conditionally invoke:**
+**Conditionally load:**
 
-- `aria-specialist` -- Interactive widgets, custom components, ARIA usage
-- `modal-specialist` -- Modals, dialogs, drawers, overlays
-- `forms-specialist` -- Form inputs, validation, error messages
-- `contrast-master` -- Colors, themes, focus indicators
-- `live-region-controller` -- Dynamic content updates, notifications
-- `tables-data-specialist` -- Data tables, grids
-- `link-checker` -- Hyperlinks (check for "click here", "read more")
-- `text-quality-reviewer` -- Alt text quality, aria-label template variables
+- `a11y-aria` -- Interactive widgets, custom components, ARIA usage
+- `a11y-modal` -- Modals, dialogs, drawers, overlays
+- `a11y-forms` -- Form inputs, validation, error messages
+- `a11y-contrast` -- Colors, themes, focus indicators
+- `a11y-live-regions` -- Dynamic content updates, notifications
+- `a11y-tables` -- Data tables, grids
+- `a11y-links` -- Hyperlinks (check for "click here", "read more")
+- `a11y-text-quality` -- Alt text quality, aria-label template variables
+- `a11y-cognitive` -- Cognitive load, plain language, auth patterns
+- `a11y-design-system` -- Token contrast, focus rings, spacing
 
 ### Step 4: Synthesize Findings
 
-Compile all specialist findings into a single review:
+Compile findings into a single review:
 
 1. **Critical Issues** -- WCAG failures that block users
 2. **Important Issues** -- Degraded experience, workarounds needed
