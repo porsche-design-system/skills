@@ -38,7 +38,7 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 
 ## Inventory
 
-### Agents (23)
+### Agents (22)
 
 | Agent | Role |
 |-------|------|
@@ -61,12 +61,11 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `cross-page-analyzer` | Multi-page audit scoring |
 | `web-issue-fixer` | Remediation |
 | `web-csv-reporter` | CSV reporting |
-| `scanner-bridge` | axe / scanner integration |
 | `lighthouse-bridge` | Lighthouse integration |
 | `playwright-scanner` | Playwright scanning |
 | `playwright-verifier` | Playwright verification |
 
-### Skills (10)
+### Skills (9)
 
 | Skill | Purpose |
 |-------|---------|
@@ -76,7 +75,6 @@ Specialists cover ARIA, keyboard, forms, contrast, modals, tables, links, cognit
 | `playwright-testing` | Playwright a11y verification |
 | `testing-strategy` | Manual and automated strategy |
 | `help-url-reference` | WCAG/ARIA reference URLs |
-| `github-a11y-scanner` | GitHub Action scanner setup |
 | `lighthouse-scanner` | Lighthouse a11y integration |
 | `cognitive-accessibility` | Cognitive criteria guidance |
 | `design-system` | Token and contrast patterns |

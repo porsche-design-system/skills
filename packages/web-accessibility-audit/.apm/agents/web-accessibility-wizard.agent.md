@@ -4,7 +4,7 @@ target: vscode
 argument-hint: "e.g. 'full audit of my web app', 'scan this page', 'generate accessibility report'"
 description: Interactive web accessibility review wizard. Runs a guided, step-by-step WCAG audit of your web application. Walks you through every accessibility domain using specialist subagents, asks questions to understand your project, and produces a prioritized action plan. Includes severity scoring, framework-specific intelligence, remediation tracking, and interactive fix mode. This package provides web accessibility audits only.
 tools: ['agent', 'askQuestions', 'read', 'search', 'edit', 'runInTerminal', 'getTerminalOutput', 'createFile', 'fetch', 'listDirectory']
-agents: ['alt-text-headings', 'aria-specialist', 'keyboard-navigator', 'modal-specialist', 'forms-specialist', 'contrast-master', 'live-region-controller', 'tables-data-specialist', 'link-checker', 'testing-coach', 'wcag-guide', 'cross-page-analyzer', 'web-issue-fixer', 'web-csv-reporter', 'scanner-bridge', 'lighthouse-bridge', 'playwright-scanner', 'playwright-verifier']
+agents: ['alt-text-headings', 'aria-specialist', 'keyboard-navigator', 'modal-specialist', 'forms-specialist', 'contrast-master', 'live-region-controller', 'tables-data-specialist', 'link-checker', 'testing-coach', 'wcag-guide', 'cross-page-analyzer', 'web-issue-fixer', 'web-csv-reporter', 'lighthouse-bridge', 'playwright-scanner', 'playwright-verifier']
 handoffs:
   - label: "Fix Page Issues"
     agent: web-issue-fixer
@@ -192,19 +192,17 @@ Start with the most important question first. Use askQuestions:
 
 Before asking the user anything, silently check the workspace for CI-based accessibility scanners:
 
-1. **GitHub Accessibility Scanner:** Search for `.github/workflows/*.yml` files containing `github/accessibility-scanner@v`. If found, note the workflow file, scanned URLs, and whether Copilot assignment is enabled.
-2. **Lighthouse CI:** Search for `.github/workflows/*.yml` files containing `treosh/lighthouse-ci-action` or `lhci`, and check for `lighthouserc.js`, `lighthouserc.json`, or `.lighthouserc.yml` config files. If found, note the workflow file and configured URLs.
+1. **Lighthouse CI:** Search for `.github/workflows/*.yml` files containing `treosh/lighthouse-ci-action` or `lhci`, and check for `lighthouserc.js`, `lighthouserc.json`, or `.lighthouserc.yml` config files. If found, note the workflow file and configured URLs.
 
-If either scanner is detected, dispatch the appropriate bridge agent (`scanner-bridge` for GitHub Scanner, `lighthouse-bridge` for Lighthouse) as a subagent to fetch existing findings. Store these findings for correlation in Phase 9.
+If Lighthouse CI is detected, dispatch `lighthouse-bridge` as a subagent to fetch existing findings. Store these findings for correlation in Phase 9.
 
-3. **Playwright Availability:** Check if the Playwright MCP tools are available by looking for `run_playwright_keyboard_scan` in your tool list. If available, behavioral testing (Phase 10) can run against the dev server URL. Note the availability status.
-4. **Dev Server Probing:** If no URL is provided later in Step 2, attempt to probe common dev server ports (3000, 5173, 8080, 4200, 8000) by checking if they respond. Store any detected URL for potential use in Phase 9 and Phase 10.
+2. **Playwright Availability:** Check if the Playwright MCP tools are available by looking for `run_playwright_keyboard_scan` in your tool list. If available, behavioral testing (Phase 10) can run against the dev server URL. Note the availability status.
+3. **Dev Server Probing:** If no URL is provided later in Step 2, attempt to probe common dev server ports (3000, 5173, 8080, 4200, 8000) by checking if they respond. Store any detected URL for potential use in Phase 9 and Phase 10.
 
 Announce detection results before proceeding:
 
-- If found: `GitHub Accessibility Scanner detected in .github/workflows/a11y-scan.yml -- 12 open issues fetched for correlation.`
 - If found: `Lighthouse CI detected in .github/workflows/lighthouse.yml -- latest accessibility score: 87/100.`
-- If neither found: proceed silently to Step 1.
+- If not found: proceed silently to Step 1.
 
 ### Step 1: App State
 
@@ -275,10 +273,6 @@ Always show these options:
 - **axe-core** (available) — Industry-standard WCAG rule engine. Tests the rendered DOM against 80+ accessibility rules. Fast, high accuracy, widely adopted.
 - **Lighthouse** (available) — Google's web quality tool. Runs axe-core rules plus additional performance-aware accessibility checks. Provides a 0-100 accessibility score.
 
-Show only if detected in Step 0:
-
-- **GitHub Accessibility Scanner** (detected in CI) — GitHub's CI-integrated scanner. Provides automatic issue creation and Copilot fix suggestions. Results are pulled from existing CI runs, not run locally.
-
 Always show:
 
 - **All available scanners** — Run every available scanner for maximum coverage and cross-validation.
@@ -299,7 +293,6 @@ Store the scanner selection and comparison preference for use in Phase 9.
 |---------|-------------|------------|------------------|
 | **axe-core** | Yes (npx) | 80+ rules, wcag2a/aa/21a/21aa | Highest rule coverage, industry standard, JSON output |
 | **Lighthouse** | Yes (npx) | ~35 axe-core rules + own checks | Accessibility score (0-100), performance-aware checks, best practices |
-| **GitHub A11y Scanner** | No (CI only) | axe-core subset | Auto-creates GitHub issues, Copilot fix suggestions, CI integration |
 
 This reference helps the user make an informed choice. If unsure, recommend "All available scanners" for maximum coverage.
 
@@ -783,10 +776,6 @@ Parse the JSON results:
 - Map each failing audit to its axe-core equivalent rule ID where applicable
 - Write a summary to `LIGHTHOUSE-SCAN.md`
 
-#### GitHub Accessibility Scanner (if selected and detected)
-
-Use scanner-bridge results already fetched in Step 0. No local execution needed — this scanner runs in CI only. Include the fetched findings in the report alongside the local scan results.
-
 **If you complete Phase 9 without having used runInTerminal for the selected scanner(s) and a URL was available, you have failed this phase. Go back and run them.**
 
 ### Cross-Scanner Comparison
@@ -804,22 +793,21 @@ Use scanner-bridge results already fetched in Step 0. No local execution needed 
    - **Agreement** — Found by 2+ scanners. Mark as highest confidence.
    - **axe-core only** — Found only by axe-core. Mark as high confidence (broadest rule set).
    - **Lighthouse only** — Found only by Lighthouse. Mark as medium confidence (may be a Lighthouse-specific check).
-   - **Scanner only** — Found only by GitHub Scanner. Mark as medium confidence (CI environment may differ from local).
 
 3. **Generate comparison matrix** for the report:
 
 ```text
  Cross-Scanner Comparison Matrix
 
-| Finding | axe-core | Lighthouse | GH Scanner | Confidence |
-|---------|----------|------------|------------|------------|
-| missing-alt | check | check | check | Highest |
-| color-contrast | check | check | — | High |
-| heading-order | check | — | — | High |
-| tap-target | — | check | — | Medium |
+| Finding | axe-core | Lighthouse | Confidence |
+|---------|----------|------------|------------|
+| missing-alt | check | check | Highest |
+| color-contrast | check | check | High |
+| heading-order | check | — | High |
+| tap-target | — | check | Medium |
 
 Agreement rate: 8/12 findings (67%) found by multiple scanners
-axe-core unique: 3 | Lighthouse unique: 1 | Scanner unique: 0
+axe-core unique: 3 | Lighthouse unique: 1
 ```
 
 4. **Scanner effectiveness summary:**
@@ -832,17 +820,12 @@ axe-core unique: 3 | Lighthouse unique: 1 | Scanner unique: 0
 
 If Step 0 detected CI scanners that the user did NOT select in Step 4b, still merge their findings for informational purposes:
 
-1. **GitHub Accessibility Scanner:** Use scanner-bridge results fetched in Step 0. For each finding:
-   - If the same rule ID was found by both the local scan and the scanner, mark as **high confidence** (both sources agree).
-   - If the scanner found an issue not in the local scan, include it as **scanner-only** with medium confidence.
-   - For scanner issues with Copilot fix PRs, note the PR status (pending, open, merged, rejected).
-
-2. **Lighthouse CI:** Use lighthouse-bridge results fetched in Step 0. For each finding:
+1. **Lighthouse CI:** Use lighthouse-bridge results fetched in Step 0. For each finding:
    - Cross-reference Lighthouse accessibility audit violations with local scan results by rule ID.
    - Include the Lighthouse accessibility score as a benchmark metric.
    - Note any Lighthouse-only findings not caught by the local scan.
 
-3. **Multi-source findings:** Issues found by all available sources (agent review + selected scanners + CI scanners) are marked as **highest confidence** and should be prioritized as top remediation targets.
+2. **Multi-source findings:** Issues found by all available sources (agent review + selected scanners + CI scanners) are marked as **highest confidence** and should be prioritized as top remediation targets.
 
 If no URL was provided at all, skip all scans and note in the report: "No runtime scan was performed because no URL was provided."
 
@@ -1144,13 +1127,12 @@ Acknowledge what the project does well. List areas that met WCAG requirements wi
 |---------|---------|-----------|-------------|
 | axe-core | [version] | Local (npx) | [count] |
 | Lighthouse | [version] | Local (npx) | [count] |
-| GitHub Scanner | [version] | CI (fetched) | [count] |
 
 ### Finding Agreement
 
-| Finding | axe-core | Lighthouse | GH Scanner | Confidence |
-|---------|----------|------------|------------|------------|
-| [rule-id]: [description] | check/— | check/— | check/— | Highest/High/Medium |
+| Finding | axe-core | Lighthouse | Confidence |
+|---------|----------|------------|------------|
+| [rule-id]: [description] | check/— | check/— | Highest/High/Medium |
 
 ### Coverage Analysis
 
@@ -1161,7 +1143,6 @@ Acknowledge what the project does well. List areas that met WCAG requirements wi
 | Found by 2+ scanners | [n] ([%]) |
 | axe-core unique findings | [n] |
 | Lighthouse unique findings | [n] |
-| GitHub Scanner unique findings | [n] |
 
 ### Scanner Recommendations
 
@@ -1173,22 +1154,6 @@ Based on the comparison results:
 ## CI Scanner Integration
 
 [Include this section only if Step 0 detected a CI scanner. Omit entirely if no scanner was found.]
-
-### GitHub Accessibility Scanner
-
-| Metric | Value |
-|--------|-------|
-| Workflow file | [path] |
-| Open scanner issues | [count] |
-| Recently closed (30d) | [count] |
-| Copilot fixes pending | [count] |
-| Copilot fixes merged | [count] |
-
-#### Scanner Issue Correlation
-
-| Finding | Scanner Issue | Local Scan | Confidence | Copilot Status |
-|---------|-------------|------------|------------|---------------|
-| [description] | [#N](url) | Confirmed / Not found | High / Medium | [status] |
 
 ### Lighthouse CI
 
