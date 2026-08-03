@@ -1,6 +1,7 @@
 ---
 name: a11y-help-url-reference
 description: Map accessibility findings to help resources: axe-core to Accessibility Insights, document rules to Microsoft Office/Adobe, WCAG criteria to W3C Understanding documents.
+user-invocable: false
 ---
 
 # Help URL Reference

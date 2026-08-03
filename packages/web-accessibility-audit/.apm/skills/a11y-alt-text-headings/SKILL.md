@@ -1,6 +1,7 @@
 ---
 name: a11y-alt-text-headings
 description: "Images, alt text, headings, landmarks, and document outline for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Alt Text Headings

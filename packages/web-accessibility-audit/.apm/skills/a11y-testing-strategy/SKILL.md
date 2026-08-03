@@ -1,6 +1,7 @@
 ---
 name: a11y-testing-strategy
 description: Accessibility testing decision trees, browser/AT compatibility matrices, manual vs. automated test coverage, regression testing patterns, and acceptance criteria templates for user stories.
+user-invocable: false
 ---
 
 # Testing Strategy Skill

@@ -1,6 +1,7 @@
 ---
 name: a11y-playwright
 description: Browser accessibility testing using Playwright and @axe-core/playwright. Keyboard scans, contrast verification, and accessibility tree snapshots.
+user-invocable: false
 ---
 
 # Playwright Accessibility Testing

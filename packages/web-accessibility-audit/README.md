@@ -22,7 +22,7 @@ dependencies:
 
 ## Usage
 
-After `apm install`, start an audit with a prompt. Every entry point uses the **a11y-audit**; domain and ops skills are loaded per phase.
+After `apm install`, start an audit with a prompt. Every entry point uses the **a11y-audit** agent; domain and ops skills are loaded by the agent (skills are `user-invocable: false` so they do not clutter the `/` menu).
 
 | Start with | Use when |
 |------------|----------|
@@ -32,7 +32,7 @@ After `apm install`, start an audit with a prompt. Every entry point uses the **
 | `a11y-component-library-audit` | Audit a component library directory |
 | `a11y-lead` | Review specific UI files (a11y-audit review mode) |
 | `a11y-fix-issues-interactive` | Interactive remediation from an audit report |
-| `a11y-issue-fixer` | Apply auto-fixable and guided fixes (a11y-audit + `a11y-issue-fixer` skill) |
+| `a11y-fix` | Apply auto-fixable and guided fixes (a11y-audit + `a11y-issue-fixer` skill) |
 
 ## Architecture
 
@@ -92,7 +92,7 @@ User → a11y-* prompts → a11y-audit (sole agent)
 | `a11y-component-library-audit.prompt.md` | `a11y-component-library-audit` | Component library audit |
 | `a11y-lead.prompt.md` | `a11y-lead` | File/component review via a11y-audit |
 | `a11y-fix-issues.prompt.md` | `a11y-fix-issues-interactive` | Interactive fix from audit report |
-| `a11y-issue-fixer.prompt.md` | `a11y-issue-fixer` | Apply fixes via a11y-audit + skill |
+| `a11y-fix.prompt.md` | `a11y-fix` | Apply fixes via a11y-audit + `a11y-issue-fixer` skill |
 
 ### Instructions (7) — always-on coding rules
 

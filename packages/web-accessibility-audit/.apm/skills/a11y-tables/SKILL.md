@@ -1,6 +1,7 @@
 ---
 name: a11y-tables
 description: "Data tables, grids, headers, scope, caption, and sortable tables for audits."
+user-invocable: false
 ---
 
 # A11y Tables

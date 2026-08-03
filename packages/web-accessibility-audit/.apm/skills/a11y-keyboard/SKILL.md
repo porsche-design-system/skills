@@ -1,6 +1,7 @@
 ---
 name: a11y-keyboard
 description: "Keyboard navigation, tab order, focus management, and shortcuts for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Keyboard

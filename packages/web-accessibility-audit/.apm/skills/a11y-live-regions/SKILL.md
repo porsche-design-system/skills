@@ -1,6 +1,7 @@
 ---
 name: a11y-live-regions
 description: "Live regions, toasts, loading states, and dynamic content announcements for audits."
+user-invocable: false
 ---
 
 # A11y Live Regions

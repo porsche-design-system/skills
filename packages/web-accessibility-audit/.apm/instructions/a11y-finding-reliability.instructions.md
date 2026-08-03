@@ -56,7 +56,7 @@ Every accessibility finding MUST include:
 - May produce findings, scores, and reports
 - Must not modify source files until the user opts into fix mode
 
-**Fix mode** (via `a11y-issue-fixer` skill / fix prompts):
+**Fix mode** (via `a11y-issue-fixer` skill / `/a11y-fix` prompt):
 
 - May edit source only for agreed issues
 - Auto-fixable changes may apply in batch when the user selects that mode

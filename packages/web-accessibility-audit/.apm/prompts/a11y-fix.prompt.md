@@ -1,6 +1,6 @@
 ---
-name: a11y-issue-fixer
-description: Web accessibility fix applier. Handles auto-fixable issues (missing alt, lang, labels, tabindex) and presents human-judgment fixes for approval. Framework-specific code generation.
+name: a11y-fix
+description: Apply accessibility fixes from an audit report (uses a11y-audit + a11y-issue-fixer skill). Handles auto-fixable issues (missing alt, lang, labels, tabindex) and presents human-judgment fixes for approval. Framework-specific code generation.
 mode: agent
 agent: a11y-audit
 tools:

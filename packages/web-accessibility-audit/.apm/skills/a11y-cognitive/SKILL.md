@@ -1,6 +1,7 @@
 ---
 name: a11y-cognitive
 description: "Cognitive accessibility, COGA, plain language, auth and timeout patterns for audits."
+user-invocable: false
 ---
 
 # A11y Cognitive

@@ -1,6 +1,7 @@
 ---
 name: a11y-testing-coach
 description: "How to test accessibility with screen readers, keyboard, and automated tools."
+user-invocable: false
 ---
 
 # A11y Testing Coach

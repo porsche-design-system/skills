@@ -1,6 +1,7 @@
 ---
 name: a11y-framework
 description: Framework-specific accessibility patterns and fix templates for React, Vue, Angular, Svelte, Next.js, and Tailwind CSS.
+user-invocable: false
 ---
 
 # Framework-Specific Accessibility Patterns

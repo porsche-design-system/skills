@@ -1,6 +1,7 @@
 ---
 name: a11y-contrast
 description: "Color contrast, themes, focus indicators, and visual accessibility for audits."
+user-invocable: false
 ---
 
 # A11y Contrast

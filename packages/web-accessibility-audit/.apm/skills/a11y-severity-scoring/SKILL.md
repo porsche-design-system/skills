@@ -1,6 +1,7 @@
 ---
 name: a11y-severity-scoring
 description: Compute web accessibility scores (0-100, A-F grades) with severity scoring, confidence levels, and remediation tracking across audits.
+user-invocable: false
 ---
 
 # Web Severity Scoring

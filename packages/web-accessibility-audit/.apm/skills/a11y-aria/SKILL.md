@@ -1,6 +1,7 @@
 ---
 name: a11y-aria
 description: "ARIA roles, states, properties, and custom widget patterns for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Aria

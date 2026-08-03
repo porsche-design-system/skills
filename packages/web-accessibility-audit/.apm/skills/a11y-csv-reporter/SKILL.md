@@ -1,6 +1,7 @@
 ---
 name: a11y-csv-reporter
 description: "Export accessibility audit findings to CSV/JSON with severity, WCAG mapping, and remediation guidance."
+user-invocable: false
 ---
 
 # A11y Csv Reporter

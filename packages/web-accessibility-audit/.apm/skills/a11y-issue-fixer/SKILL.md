@@ -1,6 +1,7 @@
 ---
 name: a11y-issue-fixer
 description: "Apply auto-fixable and guided accessibility fixes to web source code from an audit report."
+user-invocable: false
 ---
 
 # A11y Issue Fixer

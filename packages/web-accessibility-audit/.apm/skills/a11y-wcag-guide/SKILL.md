@@ -1,6 +1,7 @@
 ---
 name: a11y-wcag-guide
 description: "WCAG 2.2 criteria explanations and conformance levels for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Wcag Guide

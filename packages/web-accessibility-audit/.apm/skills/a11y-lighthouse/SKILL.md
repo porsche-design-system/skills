@@ -1,6 +1,7 @@
 ---
 name: a11y-lighthouse
 description: Integrate Lighthouse CI accessibility audits. Detects configuration, parses results, maps findings to severity model, and tracks score regressions.
+user-invocable: false
 ---
 
 # Lighthouse CI Accessibility Integration

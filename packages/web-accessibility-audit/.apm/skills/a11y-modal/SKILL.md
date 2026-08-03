@@ -1,6 +1,7 @@
 ---
 name: a11y-modal
 description: "Modals, dialogs, drawers, focus traps, and overlay accessibility for audits."
+user-invocable: false
 ---
 
 # A11y Modal

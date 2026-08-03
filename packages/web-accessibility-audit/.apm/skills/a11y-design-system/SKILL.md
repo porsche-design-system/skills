@@ -1,6 +1,7 @@
 ---
 name: a11y-design-system
 description: "Design token contrast, focus rings, motion, and spacing for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Design System

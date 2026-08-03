@@ -1,6 +1,7 @@
 ---
 name: a11y-forms
 description: "Forms, labels, validation, errors, and multi-step wizards for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Forms

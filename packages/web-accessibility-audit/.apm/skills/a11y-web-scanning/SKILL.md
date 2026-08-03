@@ -1,6 +1,7 @@
 ---
 name: a11y-web-scanning
 description: Web content discovery, URL crawling, and page inventory for accessibility audits. Use when scanning web pages, crawling sites for audit scope, or building page inventories for multi-page audits.
+user-invocable: false
 ---
 
 # Web Scanning

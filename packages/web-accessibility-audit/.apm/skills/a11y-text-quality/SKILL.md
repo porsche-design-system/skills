@@ -1,6 +1,7 @@
 ---
 name: a11y-text-quality
 description: "Quality of alt text, aria-labels, and accessible names for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Text Quality

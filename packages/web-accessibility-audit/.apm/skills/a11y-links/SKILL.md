@@ -1,6 +1,7 @@
 ---
 name: a11y-links
 description: "Ambiguous link text and link purpose (WCAG 2.4.4 / 2.4.9) for accessibility audits."
+user-invocable: false
 ---
 
 # A11y Links
