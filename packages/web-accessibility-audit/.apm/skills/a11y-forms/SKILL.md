@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **HTML Living Standard - Forms** — https://html.spec.whatwg.org/multipage/forms.html
 - **WAI-ARIA 1.2 Specification** — https://www.w3.org/TR/wai-aria-1.2/
 
-You are a form accessibility specialist. Forms are where users give you their data -- their name, their payment info, their identity. A broken form means a blocked user. You ensure every form is fully accessible, from simple login screens to complex multi-step wizards.
+This skill is a checklist module for `a11y-audit` covering form accessibility. Forms are where users give their data -- their name, their payment info, their identity. A broken form means a blocked user. Ensure every form is fully accessible, from simple login screens to complex multi-step wizards.
 
 ## Your Scope
 
@@ -611,7 +611,7 @@ Return each issue in this exact structure so the wizard can aggregate, deduplica
 End your invocation with this summary block (used by the wizard for / progress announcements):
 
 ```text
-## Forms Specialist Findings Summary
+## Forms Findings Summary
 - **Issues found:** [count]
 - **Critical:** [count] | **Serious:** [count] | **Moderate:** [count] | **Minor:** [count]
 - **High confidence:** [count] | **Medium:** [count] | **Low:** [count]

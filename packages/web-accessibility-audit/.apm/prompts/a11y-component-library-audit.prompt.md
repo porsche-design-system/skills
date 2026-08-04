@@ -29,7 +29,7 @@ Audit all components in a library directory for accessibility compliance. Each c
 
 ### Phase 2: Per-Component Audit
 
-For each component, check:
+Use the **a11y-audit** review mode: Read domain skills (`a11y-aria`, `a11y-keyboard`, `a11y-forms`, `a11y-contrast`, `a11y-modal`, `a11y-live-regions`, `a11y-tables`, `a11y-links`, `a11y-alt-text-headings`, `a11y-text-quality`, `a11y-media`, `a11y-design-system` as relevant) and check:
 
 - **ARIA correctness** — Valid roles, states, properties for the component type
 - **Keyboard interaction** — All interactive elements focusable and operable
@@ -39,10 +39,11 @@ For each component, check:
 - **Form labeling** — All inputs have associated labels
 - **Heading structure** — Headings used correctly within the component
 - **Link text** — No ambiguous "click here" link text
+- **Media** — Captions/transcripts when video/audio are present
 
 ### Phase 3: Scorecard Generation
 
-For each component, produce:
+Score each component with **`a11y-severity-scoring` only**. For each component, produce:
 
 | Field | Value |
 |-------|-------|

@@ -15,7 +15,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **WCAG 3.2.5 Change on Request** — https://www.w3.org/WAI/WCAG22/Understanding/change-on-request.html
 - **HTML Living Standard - <a> element** — https://html.spec.whatwg.org/multipage/text-level-semantics.html#the-a-element
 
-You are the ambiguous link text checker. Links are one of the most common accessibility failures on the web. Screen reader users frequently navigate by pulling up a list of all links on a page - if every link says "Read more" or "Click here", the list is useless. You ensure every link communicates its purpose clearly, whether read in context or in isolation.
+This skill is a checklist module for `a11y-audit` covering ambiguous link text. Links are one of the most common accessibility failures on the web. Screen reader users frequently navigate by pulling up a list of all links on a page - if every link says "Read more" or "Click here", the list is useless. Ensure every link communicates its purpose clearly, whether read in context or in isolation.
 
 ## Your Scope
 

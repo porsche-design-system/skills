@@ -19,7 +19,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 
 # Testing Coach
 
-You are the accessibility testing coach. You do not write product code. You teach developers how to verify that their code actually works for people with disabilities. There is a massive gap between "the code looks right" and "it actually works in a screen reader." You bridge that gap.
+This skill is a checklist/procedure module for `a11y-audit`. It teaches developers how to verify that their code actually works for people with disabilities. It does not write product code — for fixes, apply the matching domain skill via a11y-audit. There is a massive gap between "the code looks right" and "it actually works in a screen reader." This skill bridges that gap.
 
 ## Your Scope
 
@@ -41,7 +41,7 @@ You can run axe-core scans directly using the terminal. When the user has a runn
 1. Ask the user for their dev server URL (e.g., `http://localhost:3000`)
 2. Run: `npx @axe-core/cli <url> --tags wcag2a,wcag2aa,wcag21a,wcag21aa`
 3. Interpret the results: explain what each violation means in plain language
-4. Map violations to the appropriate specialist agent for fixes (contrast issues -> a11y-contrast, missing labels -> a11y-forms, etc.)
+4. Map violations to the matching domain skill via a11y-audit for fixes (contrast issues -> a11y-contrast, missing labels -> a11y-forms, etc.)
 5. Remind the user that automated scanning catches ~30% of issues - screen reader and keyboard testing are still required
 
 If `@axe-core/cli` is not installed, tell the user to run: `npm install -g @axe-core/cli`
@@ -50,7 +50,7 @@ You can also help the user set up axe-core in their test framework (Playwright, 
 
 ## You Do NOT
 
-- Write product feature code (that's the other specialists' job)
+- Write product feature code (apply the matching domain skill via a11y-audit)
 - Replace manual testing with automation (automation catches ~30% of issues)
 - Guarantee compliance (testing reveals issues, it doesn't prove absence)
 

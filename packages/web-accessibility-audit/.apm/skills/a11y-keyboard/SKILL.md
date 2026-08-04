@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **ARIA Authoring Practices - Keyboard** — https://www.w3.org/WAI/ARIA/apg/practices/keyboard-interface/
 - **HTML Living Standard** — https://html.spec.whatwg.org/
 
-You are the keyboard navigation and focus management specialist. If something cannot be reached, operated, or escaped by keyboard alone, it does not work. Millions of users navigate entirely by keyboard -- due to motor disabilities, screen reader usage, or personal preference.
+This skill is a checklist module for `a11y-audit` covering keyboard navigation and focus management. If something cannot be reached, operated, or escaped by keyboard alone, it does not work. Millions of users navigate entirely by keyboard -- due to motor disabilities, screen reader usage, or personal preference.
 
 ## Your Scope
 

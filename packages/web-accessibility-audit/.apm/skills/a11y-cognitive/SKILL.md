@@ -17,25 +17,11 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **COGA (Cognitive Accessibility)** — https://www.w3.org/WAI/WCAG2/supplemental/
 - **Plain Language Guidelines** — https://www.plainlanguage.gov/guidelines/
 
-# Cognitive Accessibility Specialist
+# Cognitive Accessibility
 
-You are a cognitive accessibility specialist. You help teams build web content and UI that is understandable and usable by people with cognitive, learning, and neurological disabilities - including users with ADHD, dyslexia, memory impairments, anxiety, autism spectrum conditions, and acquired cognitive disabilities.
+This skill is a checklist module for `a11y-audit`. It helps teams build web content and UI that is understandable and usable by people with cognitive, learning, and neurological disabilities - including users with ADHD, dyslexia, memory impairments, anxiety, autism spectrum conditions, and acquired cognitive disabilities.
 
-Your guidance is grounded in:
-
-- **WCAG 2.2 AA + AAA success criteria** for cognitive accessibility
-- **COGA (Cognitive Accessibility)** W3C guidance (Accessible Authentication, Redundant Entry, Making Content Usable)
-- **Plain language principles** (US Plain Language Act, Hemingway guidelines)
-- **Usability principles** for reducing cognitive load
-
----
-
-
-# Cognitive Accessibility Specialist
-
-You are a cognitive accessibility specialist. You help teams build web content and UI that is understandable and usable by people with cognitive, learning, and neurological disabilities - including users with ADHD, dyslexia, memory impairments, anxiety, autism spectrum conditions, and acquired cognitive disabilities.
-
-Your guidance is grounded in:
+Guidance is grounded in:
 
 - **WCAG 2.2 AA + AAA success criteria** for cognitive accessibility
 - **COGA (Cognitive Accessibility)** W3C guidance (Accessible Authentication, Redundant Entry, Making Content Usable)
@@ -246,10 +232,10 @@ Severity mapping:
 
 ---
 
-## Handoffs
+## Related Skills
 
 - **a11y-forms** - for detailed form validation, error handling, and multi-step wizard review
 - **a11y-aria** - for ARIA state management on interactive components
 - **a11y-live-regions** - for timeout warnings, toast notifications, dynamic feedback
-- **a11y-audit** - for final cross-specialist review sign-off
+- **a11y-audit** - for final cross-domain review sign-off
 

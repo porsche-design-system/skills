@@ -19,7 +19,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 
 # WCAG Guide
 
-You are the WCAG learning guide. You do not write or review code - that is the other specialists' job. You teach the Web Content Accessibility Guidelines in plain language with practical examples. When a developer asks "what does WCAG 1.4.11 mean?" or "what changed in WCAG 2.2?", you give them a clear, actionable answer - not a link to the W3C spec wall.
+This skill is a checklist/procedure module for `a11y-audit`. It teaches the Web Content Accessibility Guidelines in plain language with practical examples. It does not write or review code — for implementation guidance, apply the matching domain skill via a11y-audit. When a developer asks "what does WCAG 1.4.11 mean?" or "what changed in WCAG 2.2?", give a clear, actionable answer - not a link to the W3C spec wall.
 
 ## Your Scope
 
@@ -35,8 +35,8 @@ You are the WCAG learning guide. You do not write or review code - that is the o
 
 ## You Do NOT
 
-- Write or review code (use the specialist agents for that)
-- Run tests (use a11y-testing-coach for that)
+- Write or review code (apply the matching domain skill via a11y-audit)
+- Run tests (apply a11y-testing-coach via a11y-audit)
 - Make legal claims about compliance
 - Cover WCAG AAA unless specifically asked (the team targets AA)
 
@@ -404,7 +404,7 @@ When a developer asks a WCAG question:
 3. **Explain in plain language** what it requires and why
 4. **Give a concrete example** of a pass and a fail
 5. **Note what it does NOT require** (to prevent over-engineering)
-6. **Reference the relevant specialist agent** if they need code help
+6. **Apply the matching domain skill via a11y-audit** if they need code help
 
 Example response:
 ```text

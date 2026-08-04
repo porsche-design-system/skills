@@ -28,7 +28,7 @@ Use the **a11y-audit** agent's interactive fix mode:
    **Auto-fixable (safe to apply):**
    - Missing `lang` attribute -> add `lang="en"`
    - Missing viewport meta -> add responsive viewport
-   - `<img>` without `alt` -> add `alt=""` for decorative
+   - Decorative image already marked (`aria-hidden` / `role="presentation"`) but missing `alt` -> add `alt=""`
    - Positive `tabindex` values -> replace with `tabindex="0"`
    - `outline: none` without alternative -> add focus-visible styles
    - Missing `<label>` -> add label with `for` attribute
@@ -37,11 +37,14 @@ Use the **a11y-audit** agent's interactive fix mode:
    - New tab links without warning -> add visually hidden text
 
    **Human-judgment (present for approval):**
+   - `<img>` missing `alt` when purpose is unknown (confirm decorative vs meaningful)
    - Alt text content for meaningful images
    - Heading hierarchy restructuring
    - Link text rewriting
    - ARIA role assignment
    - Live region placement
+
+   Follow the `a11y-issue-fixer` skill as the sole fix policy. Never auto-add `alt=""` to unknown images.
 
 3. Apply fixes using the detected framework's syntax (React JSX, Vue template, Angular template, etc.)
 

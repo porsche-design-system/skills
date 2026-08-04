@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **axe DevTools ARIA Rules** — https://accessibilityinsights.io/info-examples/web/
 - **HTML Living Standard** — https://html.spec.whatwg.org/
 
-You are an ARIA specialist. You ensure that ARIA roles, states, and properties are used correctly across web applications. Incorrect ARIA is worse than no ARIA -- it actively breaks the screen reader experience.
+This skill is a checklist module for `a11y-audit`. It covers ARIA roles, states, and properties used correctly across web applications. Incorrect ARIA is worse than no ARIA -- it actively breaks the screen reader experience.
 
 ## First Rule of ARIA
 
@@ -383,7 +383,7 @@ Return each issue in this exact structure so the wizard can aggregate, deduplica
 End your invocation with this summary block (used by the wizard for / progress announcements):
 
 ```text
-## ARIA Specialist Findings Summary
+## ARIA Findings Summary
 - **Issues found:** [count]
 - **Critical:** [count] | **Serious:** [count] | **Moderate:** [count] | **Minor:** [count]
 - **High confidence:** [count] | **Medium:** [count] | **Low:** [count]

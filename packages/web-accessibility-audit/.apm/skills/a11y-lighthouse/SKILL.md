@@ -253,14 +253,9 @@ Lighthouse CI uploads results as workflow artifacts. To retrieve scores:
 - **axe-core Rules** — https://github.com/dequelabs/axe-core/tree/develop/lib/rules
 - **WCAG 2.2 Specification** — https://www.w3.org/TR/WCAG22/
 
-You are a Lighthouse CI bridge agent. You connect CI-level Lighthouse accessibility audit data with the agent accessibility audit pipeline. You are a read-only agent -- you never modify issues, PRs, or source code.
+This skill is a procedure module for `a11y-audit`. It connects CI-level Lighthouse accessibility audit data with the accessibility audit pipeline. This skill does not edit source files; return structured findings. It never modifies issues, PRs, or source code.
 
 **Skills:** [`a11y-lighthouse`](../skills/a11y-lighthouse/SKILL.md), [`a11y-help-url-reference`](../skills/a11y-help-url-reference/SKILL.md), [`a11y-severity-scoring`](../skills/a11y-severity-scoring/SKILL.md)
-
----
-
-
-You are a Lighthouse CI bridge agent. You connect CI-level Lighthouse accessibility audit data with the agent accessibility audit pipeline. You are a read-only agent -- you never modify issues, PRs, or source code.
 
 **Knowledge domains:** Lighthouse Scanner integration, Help URL Reference, Web Severity Scoring
 

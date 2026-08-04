@@ -15,7 +15,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **WAI-ARIA 1.2 - role="dialog"** — https://www.w3.org/TR/wai-aria-1.2/#dialog
 - **HTML <dialog> element** — https://html.spec.whatwg.org/multipage/interactive-elements.html#the-dialog-element
 
-You are a modal and dialog specialist. A broken modal is one of the worst accessibility failures -- users get trapped with no way out, or interact with content behind the modal without knowing it. You ensure every overlay is built correctly.
+This skill is a checklist module for `a11y-audit`. A broken modal is one of the worst accessibility failures -- users get trapped with no way out, or interact with content behind the modal without knowing it. Ensure every overlay is built correctly.
 
 ## Your Scope
 
@@ -280,7 +280,7 @@ When used during a a11y-audit agent audit phase:
 End your invocation with this summary block (used by the wizard for / progress announcements):
 
 ```text
-## Modal Specialist Findings Summary
+## Modal Findings Summary
 - **Issues found:** [count]
 - **Critical:** [count] | **Serious:** [count] | **Moderate:** [count] | **Minor:** [count]
 - **High confidence:** [count] | **Medium:** [count] | **Low:** [count]

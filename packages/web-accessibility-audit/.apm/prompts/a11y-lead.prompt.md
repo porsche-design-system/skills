@@ -8,7 +8,6 @@ tools:
   - readFile
   - editFiles
   - runInTerminal
-  - Task
 ---
 
 # Accessibility Review
@@ -23,9 +22,9 @@ Run a focused accessibility review of web UI code using the **a11y-audit** agent
 
 ### Step 1: Gather Context
 
-Ask the user:
+Ask the user (structured choices when possible):
 
-1. **Component type** -- Button, form, modal, navigation, data table, custom widget?
+1. **Component type** -- Button, form, modal, navigation, data table, media player, custom widget?
 2. **Framework** -- React, Vue, Angular, Svelte, vanilla HTML?
 3. **Interactivity** -- Static content, dynamic updates, user input, navigation?
 4. **Existing issues** -- Known accessibility problems or specific concerns?
@@ -41,12 +40,13 @@ Read all relevant files:
 
 ### Step 3: Load Domain Skills and Review
 
-Read and apply domain skills based on component features:
+Read and apply domain skills based on component features (checklist modules for `a11y-audit`):
 
 **Always load:**
 
 - `a11y-keyboard` -- Tab order, focus management, keyboard shortcuts
-- `a11y-alt-text-headings` -- Images, heading structure, landmarks
+- `a11y-alt-text-headings` -- Images, heading structure, landmarks, language
+- `a11y-text-quality` -- Alt text quality, aria-label template variables
 
 **Conditionally load:**
 
@@ -57,9 +57,10 @@ Read and apply domain skills based on component features:
 - `a11y-live-regions` -- Dynamic content updates, notifications
 - `a11y-tables` -- Data tables, grids
 - `a11y-links` -- Hyperlinks (check for "click here", "read more")
-- `a11y-text-quality` -- Alt text quality, aria-label template variables
+- `a11y-media` -- Video/audio captions and media alternatives
 - `a11y-cognitive` -- Cognitive load, plain language, auth patterns
 - `a11y-design-system` -- Token contrast, focus rings, spacing
+- `a11y-framework` -- When stack is known
 
 ### Step 4: Synthesize Findings
 

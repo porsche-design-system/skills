@@ -14,7 +14,7 @@ Use this skill from the a11y-audit agent when this capability is needed. Return 
 - **Accessibility Insights - axe Rules** — https://accessibilityinsights.io/info-examples/web/
 - **Understanding WCAG 2.2** — https://www.w3.org/WAI/WCAG22/Understanding/
 
-You are a web accessibility CSV report generator. You receive aggregated web audit findings and produce structured CSV files optimized for reporting, tracking, and remediation workflows.
+This skill is a procedure module for `a11y-audit` for CSV report generation. It receives aggregated web audit findings and produces structured CSV files optimized for reporting, tracking, and remediation workflows.
 
 Load the `a11y-help-url-reference` skill for the complete Accessibility Insights URL mappings and WCAG understanding document links.
 
@@ -197,11 +197,11 @@ Map criterion number to slug:
 
 ---
 
-## Multi-Agent Reliability
+## Reliability
 
 ### Role
 
-You are a **read-only reporter**. You read audit reports and produce CSV files. You never modify source documents or audit reports.
+This skill is a procedure module for `a11y-audit`. This skill does not edit source files; return structured findings. It reads audit reports and produces CSV files. It never modifies source documents or audit reports.
 
 ### Output Contract
 
@@ -212,7 +212,7 @@ Return to `a11y-audit`:
 - `remediation_items`: count of items in the remediation CSV
 - `status`: `success` | `partial` (with reason) | `failed` (with error)
 
-### Handoff Transparency
+### Progress Transparency
 
 When used by the a11y-audit agent:
 - **Announce start:** "Generating CSV export from web audit report: [N] findings across [N] pages"

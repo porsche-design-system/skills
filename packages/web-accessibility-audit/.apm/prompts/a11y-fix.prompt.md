@@ -51,7 +51,7 @@ Check workspace for:
 **Auto-fixable (high confidence):**
 
 - Missing `lang` attribute on `<html>`
-- Missing `alt` on images (use filename as placeholder)
+- Decorative image already marked (`aria-hidden` / `role="presentation"`) but missing `alt` → `alt=""`
 - Positive `tabindex` → `tabindex="0"` or remove
 - Missing form labels (wrap input with label)
 
@@ -60,7 +60,9 @@ Check workspace for:
 - Ambiguous link text (needs context)
 - Color contrast (requires color picker)
 - ARIA role conflicts (needs architectural decision)
-- Missing alt text (needs descriptive text from user)
+- Missing `alt` when image purpose is unknown (confirm decorative vs meaningful — never invent `alt=""` or filename placeholders)
+
+Follow the `a11y-issue-fixer` skill as the sole fix policy.
 
 ### Step 4: Apply Auto-Fixes
 

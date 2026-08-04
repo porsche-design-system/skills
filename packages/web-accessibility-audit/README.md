@@ -38,8 +38,28 @@ After `apm install`, start an audit with a prompt. Every entry point uses the **
 
 ```text
 User → a11y-* prompts → a11y-audit (sole agent)
-                              └─ Read domain + ops skills by phase
+                              └─ Read domain + ops skills by phase (0–12)
 ```
+
+### Phase map
+
+| Phase | Focus | Skills |
+|-------|--------|--------|
+| 0 | Discovery | `a11y-framework`, `a11y-web-scanning` |
+| 1 | Structure | `a11y-alt-text-headings`, `a11y-text-quality`, `a11y-media` (when media present) |
+| 2 | Keyboard | `a11y-keyboard`, `a11y-modal` |
+| 3 | Forms | `a11y-forms` |
+| 4 | Visual | `a11y-contrast`, `a11y-design-system` (when tokens) |
+| 5 | Live regions | `a11y-live-regions` |
+| 6 | ARIA widgets | `a11y-aria` |
+| 7 | Tables | `a11y-tables` |
+| 8 | Links | `a11y-links` |
+| 9 | Scanners | `a11y-web-scanning`, `a11y-lighthouse` |
+| 10 | Behavioral | `a11y-playwright` (CLI primary; MCP optional) |
+| 11 | Report | `a11y-severity-scoring`, `a11y-help-url-reference`, testing skills |
+| 12 | Fix / verify | `a11y-issue-fixer` |
+
+**Thoroughness:** Quick = 0→1→9→11; Standard = 0–11; Deep dive = Standard + `a11y-cognitive` + quiet batching + design-system when tokens exist.
 
 ## Inventory
 
@@ -49,12 +69,13 @@ User → a11y-* prompts → a11y-audit (sole agent)
 |-------|------|
 | `a11y-audit` | Sole orchestrator: full audit, file review, fixes, export, scanners via skills |
 
-### Domain skills (14)
+### Domain skills (15)
 
 | Skill | Purpose |
 |-------|---------|
 | `a11y-aria` | ARIA roles, states, properties |
-| `a11y-alt-text-headings` | Images, alt text, headings, landmarks |
+| `a11y-alt-text-headings` | Images, alt text, headings, landmarks, language of page/parts |
+| `a11y-media` | Video/audio captions, descriptions, media alternatives (WCAG 1.2.x) |
 | `a11y-keyboard` | Tab order and focus |
 | `a11y-modal` | Dialogs and overlays |
 | `a11y-forms` | Forms, labels, validation |
@@ -73,13 +94,13 @@ User → a11y-* prompts → a11y-audit (sole agent)
 | Skill | Purpose |
 |-------|---------|
 | `a11y-web-scanning` | URL crawling, axe-core CLI, page inventory |
-| `a11y-severity-scoring` | Severity, grade scoring, cross-page analysis |
+| `a11y-severity-scoring` | Severity, grade scoring, cross-page analysis (sole scoring source) |
 | `a11y-framework` | Framework-specific patterns |
-| `a11y-playwright` | Playwright scan + fix verification |
+| `a11y-playwright` | Playwright CLI behavioral scan + fix verification (MCP optional) |
 | `a11y-testing-strategy` | Manual and automated strategy |
 | `a11y-help-url-reference` | WCAG/ARIA reference URLs |
 | `a11y-lighthouse` | Lighthouse a11y integration |
-| `a11y-issue-fixer` | Apply guided / auto fixes |
+| `a11y-issue-fixer` | Apply guided / auto fixes (sole fix policy) |
 | `a11y-csv-reporter` | CSV/JSON export of findings |
 
 ### Prompts (7) — audit initiation + fix
@@ -108,21 +129,7 @@ User → a11y-* prompts → a11y-audit (sole agent)
 
 ## Updating from accessibility-agents
 
-From the monorepo root:
-
-```bash
-node scripts/extract-from-accessibility-agents.mjs \
-  --source /path/to/accessibility-agents
-```
-
-The extract script:
-
-1. Copies ops skills and the a11y-audit agent only (no specialist/bridge agents)
-2. Migrates specialist and bridge agent bodies into skills
-3. Rewrites a11y-audit to load those skills
-4. Retargets all prompts to the single agent
-
-Defaults: `--source` from `A11Y_AGENTS_SOURCE` or `../APM/accessibility-agents`; `--package packages/web-accessibility-audit`.
+Historical extract tooling may live outside this package. Prefer updating skills and the agent in-tree. If an extract script exists in the monorepo or a sibling `accessibility-agents` checkout, use that project's docs; this package does not ship a required extract script.
 
 ## Package author checks
 
@@ -141,7 +148,7 @@ apm install /absolute/path/to/skills/packages/web-accessibility-audit -t copilot
 
 ## Not included in v1
 
-Compare/CI-setup prompts, enforcement hooks, MCP servers, and `.a11y-web-config.json` are deferred. Use the accessibility-agents web-audit installer if you need those today.
+Compare/CI-setup prompts, enforcement hooks, custom Playwright MCP servers, and `.a11y-web-config.json` are deferred. Phase 10 uses **Playwright CLI** (`npx playwright` / `@axe-core/playwright`); MCP tools are optional acceleration only. Use the accessibility-agents web-audit installer if you need hooks/MCP today.
 
 ## License
 

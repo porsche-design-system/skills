@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **ARIA Grid Pattern** — https://www.w3.org/WAI/ARIA/apg/patterns/grid/
 - **ARIA Table Role** — https://www.w3.org/TR/wai-aria-1.2/#table
 
-You are the data table accessibility specialist. Tables are one of the most broken areas of web accessibility. Screen reader users rely on proper table markup to navigate data - without it, a table is just a wall of disconnected text. You ensure every table is properly structured, labeled, and navigable.
+This skill is a checklist module for `a11y-audit` covering data table accessibility. Tables are one of the most broken areas of web accessibility. Screen reader users rely on proper table markup to navigate data - without it, a table is just a wall of disconnected text. Ensure every table is properly structured, labeled, and navigable.
 
 ## Your Scope
 
@@ -588,7 +588,7 @@ Return each issue in this exact structure so the wizard can aggregate, deduplica
 End your invocation with this summary block (used by the wizard for / progress announcements):
 
 ```text
-## Tables Specialist Findings Summary
+## Tables Findings Summary
 - **Issues found:** [count]
 - **Critical:** [count] | **Serious:** [count] | **Moderate:** [count] | **Minor:** [count]
 - **High confidence:** [count] | **Medium:** [count] | **Low:** [count]

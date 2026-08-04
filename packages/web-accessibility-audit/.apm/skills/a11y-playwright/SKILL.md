@@ -6,9 +6,19 @@ user-invocable: false
 
 # Playwright Accessibility Testing
 
-Reusable knowledge module for browser-based accessibility testing using Playwright and @axe-core/playwright.
+This skill is a procedure module for `a11y-audit` for browser-based accessibility testing using Playwright and `@axe-core/playwright`.
 
-## MCP Tools Available
+**Primary path: CLI / Node scripts** via the terminal (`npx playwright`, temporary `.mjs` runners).  
+**Optional acceleration:** Playwright MCP tools (`run_playwright_*`) if present in the tool list — use them when available; otherwise always use CLI.
+
+## Execution order
+
+1. Detect: `npx playwright --version` and whether `@axe-core/playwright` is installed (project `node_modules` or installable via npx).
+2. If MCP tools `run_playwright_keyboard_scan` (etc.) are available, they may be used instead of writing scripts for the same scan type.
+3. Otherwise write and run Node scripts with Playwright (patterns below) via the terminal.
+4. If Playwright cannot run, skip behavioral scans and report degraded status with install commands.
+
+## Optional MCP tools (acceleration only)
 
 | Tool | Purpose | Requires @axe-core/playwright |
 |------|---------|------------------------------|
@@ -17,6 +27,44 @@ Reusable knowledge module for browser-based accessibility testing using Playwrig
 | `run_playwright_viewport_scan` | Multi-viewport axe-core + touch target measurement | Yes |
 | `run_playwright_contrast_scan` | Computed-style contrast ratio after CSS cascade | No |
 | `run_playwright_a11y_tree` | Browser accessibility tree snapshot | No |
+
+Do not treat missing MCP tools as failure when CLI works.
+
+## CLI setup
+
+```bash
+# Check Playwright
+npx playwright --version
+
+# Prefer project deps; install if needed
+npm install -D playwright @axe-core/playwright
+npx playwright install chromium
+```
+
+### One-shot page axe scan (CLI-oriented)
+
+Write a temporary script (e.g. `.a11y-playwright-scan.mjs`) and run with `node`:
+
+```javascript
+import { chromium } from 'playwright';
+import AxeBuilder from '@axe-core/playwright';
+import fs from 'node:fs';
+
+const url = process.env.A11Y_URL || process.argv[2];
+const browser = await chromium.launch();
+const page = await browser.newPage();
+await page.goto(url, { waitUntil: 'networkidle' });
+const results = await new AxeBuilder({ page })
+  .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+  .analyze();
+fs.writeFileSync('ACCESSIBILITY-PLAYWRIGHT-AXE.json', JSON.stringify(results, null, 2));
+console.log(JSON.stringify({ violations: results.violations.length, passes: results.passes.length }, null, 2));
+await browser.close();
+```
+
+```bash
+A11Y_URL="http://localhost:3000" node .a11y-playwright-scan.mjs
+```
 
 ## @axe-core/playwright Patterns
 
@@ -269,7 +317,7 @@ Install: npm install -D @axe-core/playwright
 | 2.5.8 | Target Size (Minimum) | viewport scan |
 | 4.1.2 | Name, Role, Value | a11y tree, state scan |
 
-## Playwright Scanner Procedures (from bridge)
+## Playwright Scanner Procedures
 
 ## Authoritative Sources
 
@@ -278,9 +326,7 @@ Install: npm install -D @axe-core/playwright
 - **Playwright Accessibility** — https://playwright.dev/docs/accessibility-testing
 - **@axe-core/playwright** — https://github.com/dequelabs/axe-core-npm/tree/develop/packages/playwright
 
-You are a behavioral accessibility scanner agent. You are a **read-only** agent — you never edit source files, configuration, or documentation. You are invoked internally by `a11y-audit` to run live browser-based accessibility tests.
-
-**Knowledge domains:** Playwright Testing, Web Severity Scoring
+This skill is a procedure module for `a11y-audit` for behavioral accessibility scanning. This skill does not edit source files, configuration, or documentation; return structured findings.
 
 ---
 
@@ -288,21 +334,36 @@ You are a behavioral accessibility scanner agent. You are a **read-only** agent 
 
 ### 1. Full Behavioral Scan
 
-When invoked with a URL and scan profile, execute the following tests in order:
+When given a URL and scan profile, execute the following tests in order (CLI scripts or optional MCP equivalents):
 
-1. **Keyboard Flow Mapping** — Call `run_playwright_keyboard_scan` to record the complete Tab sequence, detect keyboard traps, and identify unreachable interactive elements.
+1. **Keyboard Flow Mapping** — Tab sequence, traps, unreachable interactive elements (keyboard patterns above).
+2. **Dynamic State Scanning** — Click triggers (accordions, menus, modals, tabs); run AxeBuilder on revealed states (`@axe-core/playwright` required).
+3. **Responsive Viewport Scanning** — Set viewport widths [320, 768, 1024, 1440]; check reflow/horizontal scroll and touch target sizes; run axe per viewport when `@axe-core/playwright` is available.
+4. **Rendered Contrast Verification** — Evaluate computed foreground/background colors after CSS cascade; flag ratios below WCAG thresholds.
+5. **Accessibility Tree Snapshot** — Use Playwright accessibility snapshot / `page.accessibility.snapshot()` (or MCP `run_playwright_a11y_tree`) for landmark/heading/role/name checks.
 
-2. **Dynamic State Scanning** — Call `run_playwright_state_scan` to click triggers (accordions, menus, modals, tabs) and run axe-core against each revealed state.
+### Viewport + touch targets (CLI sketch)
 
-3. **Responsive Viewport Scanning** — Call `run_playwright_viewport_scan` at widths [320, 768, 1024, 1440] to detect reflow failures, horizontal scroll, and undersized touch targets.
-
-4. **Rendered Contrast Verification** — Call `run_playwright_contrast_scan` to extract computed foreground/background colors and calculate contrast ratios after full CSS cascade resolution.
-
-5. **Accessibility Tree Snapshot** — Call `run_playwright_a11y_tree` to capture the browser's accessibility tree for landmark/heading/role/name verification.
+```javascript
+const widths = [320, 768, 1024, 1440];
+for (const width of widths) {
+  await page.setViewportSize({ width, height: 800 });
+  await page.goto(url, { waitUntil: 'networkidle' });
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  const smallTargets = await page.evaluate(() => {
+    const min = 24; // WCAG 2.5.8 CSS px
+    return [...document.querySelectorAll('a, button, input, select, textarea, [role="button"]')]
+      .map((el) => {
+        const r = el.getBoundingClientRect();
+        return { name: el.tagName, w: r.width, h: r.height };
+      })
+      .filter((t) => t.w > 0 && t.h > 0 && (t.w < min || t.h < min));
+  });
+  // record overflow + smallTargets per width
+}
+```
 
 ### 2. Focus Management Tests
-
-Combine keyboard and state scans for focused testing:
 
 - Click a modal trigger → verify `activeElement` moves to the modal
 - Close the modal → verify `activeElement` returns to the trigger
@@ -310,13 +371,7 @@ Combine keyboard and state scans for focused testing:
 
 ### 3. Targeted Scans
 
-When invoked with specific test parameters:
-
-- **keyboard-only** — Run only keyboard flow mapping
-- **states-only** — Run only dynamic state scanning
-- **viewport-only** — Run only responsive viewport scanning
-- **contrast-only** — Run only contrast verification
-- **tree-only** — Run only accessibility tree snapshot
+- **keyboard-only** / **states-only** / **viewport-only** / **contrast-only** / **tree-only** — run only that procedure
 
 ## Output Contract
 
@@ -363,17 +418,17 @@ BEHAVIORAL CONFIDENCE: {High|Medium|Low}
 
 If Playwright is not installed:
 - Report that behavioral scans are unavailable
-- List the install command: `npm install -D playwright @axe-core/playwright && npx playwright install chromium`
-- Return a "degraded" status so the wizard can proceed with static-only analysis
+- List: `npm install -D playwright @axe-core/playwright && npx playwright install chromium`
+- Return a "degraded" status so the audit can proceed with static/runtime-only analysis
 
 If @axe-core/playwright is not installed but Playwright is:
-- Run keyboard scan, contrast scan, and accessibility tree (Playwright-only tools)
-- Skip state scan and viewport scan (require @axe-core/playwright)
+- Run keyboard, contrast, and accessibility tree scans
+- Skip axe-dependent state/viewport enrichment
 - Report partial results with a note about the missing dependency
 
 ## WCAG Coverage
 
-| Tool | WCAG Success Criteria |
+| Procedure | WCAG Success Criteria |
 |------|----------------------|
 | Keyboard Scan | 2.1.1 Keyboard, 2.1.2 No Keyboard Trap, 2.4.3 Focus Order |
 | State Scan | All SC in dynamic states (1.3.1, 4.1.2, etc.) |
@@ -381,7 +436,7 @@ If @axe-core/playwright is not installed but Playwright is:
 | Contrast Scan | 1.4.3 Contrast Minimum, 1.4.6 Contrast Enhanced |
 | A11y Tree | Structural SC (1.3.1, 2.4.6, 4.1.2) |
 
-## Playwright Verifier Procedures (from bridge)
+## Playwright Verifier Procedures
 
 ## Authoritative Sources
 
@@ -390,45 +445,39 @@ If @axe-core/playwright is not installed but Playwright is:
 - **Playwright Accessibility** — https://playwright.dev/docs/accessibility-testing
 - **@axe-core/playwright** — https://github.com/dequelabs/axe-core-npm/tree/develop/packages/playwright
 
-You are a fix verification agent. You are a **read-only** agent — you never edit source files. You are invoked internally by `a11y-issue-fixer` after each fix is applied to verify the fix resolved the issue without introducing regressions.
-
-**Knowledge domains:** Playwright Testing, Web Severity Scoring
+This skill is a procedure module for fix verification (via `a11y-issue-fixer` / `a11y-audit`). This skill does not edit source files; return structured findings. Apply it after fixes to verify resolution without regressions.
 
 ---
 
 ## Verification Workflow
 
-When invoked with fix details, follow this exact sequence:
+When given fix details, follow this sequence:
 
 ### Step 1: Receive Fix Context
 
-Input parameters:
 - `fix_number` — Sequential number in the fix batch
-- `rule_id` — axe-core rule ID that was violated (e.g., `color-contrast`, `button-name`)
+- `rule_id` — axe-core rule ID (e.g., `color-contrast`, `button-name`)
 - `selector` — CSS selector of the fixed element
-- `url` — Dev server URL to test against
-- `fix_type` — The category of fix applied (contrast, keyboard, aria, structure)
+- `url` — Dev server URL
+- `fix_type` — contrast | keyboard | aria | structure | state | viewport
 
 ### Step 2: Run Targeted Verification
 
-Based on `fix_type`, run the appropriate verification tool:
+Use CLI scripts (or MCP if available):
 
-| Fix Type | Verification Tool | What to Check |
+| Fix Type | Verification | What to Check |
 |----------|------------------|---------------|
-| `contrast` | `run_playwright_contrast_scan` | Scan the specific element's computed colors, verify ratio meets threshold |
-| `keyboard` | `run_playwright_keyboard_scan` | Verify the element appears in tab order, no traps introduced |
-| `aria` | `run_playwright_a11y_tree` | Verify the element's role, name, and state in the accessibility tree |
-| `structure` | `run_playwright_a11y_tree` | Verify heading hierarchy, landmark structure |
-| `state` | `run_playwright_state_scan` | Verify dynamic content is accessible after interaction |
-| `viewport` | `run_playwright_viewport_scan` | Verify reflow and touch targets at all widths |
+| `contrast` | contrast scan script | Computed colors meet threshold |
+| `keyboard` | keyboard scan script | Element in tab order; no traps |
+| `aria` / `structure` | a11y tree / axe include(selector) | Role, name, state, headings/landmarks |
+| `state` | state scan script | Dynamic content accessible after interaction |
+| `viewport` | viewport scan script | Reflow and touch targets |
 
 ### Step 3: Determine Verdict
 
-Compare pre-fix and post-fix results:
-
-- **PASS** — Original violation is absent and no new violations were introduced
-- **FAIL** — Original violation is still present (fix didn't work)
-- **REGRESSION** — Original violation is absent but new violations were introduced
+- **PASS** — Original violation absent; no new violations
+- **FAIL** — Original violation still present
+- **REGRESSION** — Original fixed but new violations introduced
 
 ### Step 4: Report Results
 
@@ -437,67 +486,13 @@ FIX VERIFICATION #{fix_number}
 Rule: {rule_id}
 Selector: {selector}
 Verdict: {PASS|FAIL|REGRESSION}
-
-{If FAIL}
-  Original violation still present.
-  Current state: {element's current accessibility state}
-
-{If REGRESSION}
-  Original violation fixed, but new issues found:
-  - {new_violation_1}
-  - {new_violation_2}
-
-{If PASS}
-  Fix verified successfully.
 ```
 
 ## Test Code Generation
 
-After a verified PASS, generate a Playwright test that encodes the assertion for regression prevention:
-
-```javascript
-// Generated by a11y-playwright for fix #{fix_number}
-import { test, expect } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
-
-test('{rule_id} — {selector} should pass', async ({ page }) => {
-  await page.goto('{url}');
-  const results = await new AxeBuilder({ page })
-    .include('{selector}')
-    .withRules(['{rule_id}'])
-    .analyze();
-  expect(results.violations).toEqual([]);
-});
-```
-
-For keyboard fixes, generate keyboard navigation tests:
-
-```javascript
-test('keyboard: {selector} is reachable via Tab', async ({ page }) => {
-  await page.goto('{url}');
-  let found = false;
-  for (let i = 0; i < 100; i++) {
-    await page.keyboard.press('Tab');
-    const focused = await page.evaluate(() => {
-      const el = document.activeElement;
-      return el?.matches('{selector}') || false;
-    });
-    if (focused) { found = true; break; }
-  }
-  expect(found).toBe(true);
-});
-```
-
-## Graceful Degradation
-
-If Playwright is not installed:
-- Report that live verification is unavailable
-- Suggest the fix is "unverified" and should be manually tested
-- Provide the install command for future use
+After a verified PASS, generate a Playwright regression test using AxeBuilder / keyboard patterns from this skill.
 
 ## Batch Verification
-
-When verifying multiple fixes, maintain a running tally:
 
 ```text
 VERIFICATION SUMMARY

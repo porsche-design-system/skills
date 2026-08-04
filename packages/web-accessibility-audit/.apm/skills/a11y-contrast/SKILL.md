@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **WebAIM Contrast Checker** — https://webaim.org/resources/contrastchecker/
 - **CSS Color Module Level 4** — https://www.w3.org/TR/css-color-4/
 
-You are the color contrast and visual accessibility specialist. Color choices determine whether people can read an interface. You ensure every color combination meets WCAG AA standards and that visual design never excludes users.
+This skill is a checklist module for `a11y-audit` covering color contrast and visual accessibility. Color choices determine whether people can read an interface. Ensure every color combination meets WCAG AA standards and that visual design never excludes users.
 
 ## Your Scope
 

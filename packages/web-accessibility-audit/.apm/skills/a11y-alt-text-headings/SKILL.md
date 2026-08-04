@@ -16,14 +16,9 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **HTML Living Standard - alt attribute** — https://html.spec.whatwg.org/multipage/images.html#alt
 - **ARIA Authoring Practices - Landmarks** — https://www.w3.org/WAI/ARIA/apg/practices/landmark-regions/
 
-You are the alternative text and heading structure specialist. Images without alt text are invisible to screen reader users. Broken heading hierarchies make pages impossible to navigate. You ensure every piece of visual content has an appropriate text alternative and every page has a logical reading order.
+This skill is a checklist module for `a11y-audit` covering alternative text and heading structure. Images without alt text are invisible to screen reader users. Broken heading hierarchies make pages impossible to navigate. Ensure every piece of visual content has an appropriate text alternative and every page has a logical reading order.
 
-You have a unique capability: you can visually analyze images and compare them against their alt text. When you find images, look at them. Evaluate whether the alt text accurately represents what the image shows. When alt text is missing, describe what you see and suggest appropriate alternatives. When the context is ambiguous, ask the user questions to determine the image's purpose before writing alt text.
-
-
-You are the alternative text and heading structure specialist. Images without alt text are invisible to screen reader users. Broken heading hierarchies make pages impossible to navigate. You ensure every piece of visual content has an appropriate text alternative and every page has a logical reading order.
-
-You have a unique capability: you can visually analyze images and compare them against their alt text. When you find images, look at them. Evaluate whether the alt text accurately represents what the image shows. When alt text is missing, describe what you see and suggest appropriate alternatives. When the context is ambiguous, ask the user questions to determine the image's purpose before writing alt text.
+This skill supports visual analysis of images against their alt text. When images are found, look at them. Evaluate whether the alt text accurately represents what the image shows. When alt text is missing, describe what is seen and suggest appropriate alternatives. When the context is ambiguous, ask the user questions to determine the image's purpose before writing alt text.
 
 ## Your Scope
 
@@ -443,6 +438,8 @@ Icon fonts are worse than SVGs for accessibility but still common:
 
 ## Video and Audio
 
+For full WCAG 1.2.x captions, audio description, live media, and player checks, **Read and apply the `a11y-media` skill**. Summary requirements:
+
 ### Video
 
 ```html
@@ -622,7 +619,7 @@ This should read like a table of contents. If it doesn't make sense as an outlin
 document.title = 'Product Details - Acme Store';
 ```
 
-## Language Attributes
+## Language Attributes (WCAG 3.1.1 / 3.1.2)
 
 ```html
 <!-- Page language -->
@@ -632,10 +629,18 @@ document.title = 'Product Details - Acme Store';
 <p>The French word <span lang="fr">bonjour</span> means hello.</p>
 ```
 
-- `lang` on `<html>` is mandatory (WCAG 3.1.1)
-- `lang` on elements with different language content (WCAG 3.1.2)
-- Screen readers use this to switch pronunciation
-- Use correct BCP 47 language codes: `en`, `es`, `fr`, `de`, `ja`, `zh`, `ar`
+### Language of page (3.1.1 Level A)
+
+- `lang` on `<html>` is mandatory and must match the primary page language
+- Use correct BCP 47 language codes: `en`, `es`, `fr`, `de`, `ja`, `zh`, `ar`, `en-GB`, etc.
+- Framework apps: set `lang` on the document shell (e.g. Next.js `_document` / root layout), not only in a React fragment
+
+### Language of parts (3.1.2 Level AA)
+
+- Passages, quotes, labels, or navigation items in another language need `lang` on the containing element
+- Do not mark proper names, technical terms, or words of indeterminate language unless pronunciation would be wrong without it
+- Bidirectional / RTL content: ensure `dir` is correct when language changes imply direction (`dir="rtl"` with `lang="ar"` / `lang="he"`)
+- Screen readers use `lang` to switch pronunciation — wrong or missing `lang` causes garbled speech
 
 ## Landmark Structure
 

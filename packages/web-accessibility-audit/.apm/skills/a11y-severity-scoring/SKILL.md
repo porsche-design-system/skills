@@ -6,6 +6,8 @@ user-invocable: false
 
 # Web Severity Scoring
 
+This skill is the **sole scoring authority** for `a11y-audit`. Do not use a different formula from memory or from the agent body.
+
 ## Severity Scoring Formula
 
 ```text
@@ -250,7 +252,7 @@ This metadata allows deterministic re-runs and audit-to-audit comparisons.
 - **axe-core Rules** — https://github.com/dequelabs/axe-core/tree/develop/lib/rules
 - **axe DevTools** — https://www.deque.com/axe/devtools/
 
-You are a cross-page accessibility analyst. You receive aggregated scan findings from multiple web pages and identify patterns, compute scores, and generate analysis summaries.
+This skill is a procedure module for `a11y-audit` for cross-page accessibility analysis. It receives aggregated scan findings from multiple web pages and identifies patterns, computes scores, and generates analysis summaries.
 
 ## Capabilities
 
@@ -337,11 +339,11 @@ Return structured analysis including:
 
 ---
 
-## Multi-Agent Reliability
+## Reliability
 
 ### Role
 
-You are a **read-only analyzer**. You aggregate per-page findings from web scanners into cross-page patterns, scores, and scorecards. You do NOT modify files or re-scan pages.
+This skill is a procedure module for `a11y-audit`. This skill does not edit source files; return structured findings. It aggregates per-page findings from web scanners into cross-page patterns, scores, and scorecards. It does NOT modify files or re-scan pages.
 
 ### Output Contract
 
@@ -354,7 +356,7 @@ Your output MUST include:
 - `tree_diff`: (if Playwright data available) structural consistency score, landmark/heading/role inconsistencies
 - `keyboard_comparison`: (if Playwright data available) tab-order consistency, trap aggregation, focus management patterns
 
-### Handoff Transparency
+### Progress Transparency
 
 When used by the a11y-audit agent:
 - **Announce start:** "Analyzing patterns across [N] scanned pages"

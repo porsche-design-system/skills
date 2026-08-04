@@ -16,7 +16,7 @@ Use this skill from the a11y-audit agent when this capability is needed. Return 
 - **axe DevTools Rules** — https://accessibilityinsights.io/info-examples/web/
 - **HTML Living Standard** — https://html.spec.whatwg.org/
 
-You are a web accessibility issue fixer. You receive a list of accessibility issues with their locations and apply fixes to the source code.
+This skill is the checklist/procedure module for applying accessibility fixes from an audit report. It is the **sole fix policy** for `a11y-audit`. Receive issues with locations and apply fixes to source code per the categories below.
 
 ## Fix Categories
 
@@ -28,7 +28,6 @@ These are safe, deterministic fixes with no risk of breaking behavior:
 |-------|-----|------------|
 | Missing `lang` on `<html>` | Add `lang="en"` (or detected language) | High |
 | Missing viewport meta | Add `<meta name="viewport" content="width=device-width, initial-scale=1">` | High |
-| `<img>` without `alt` attribute | Add `alt=""` (decorative) - prompt for content images | High for decorative |
 | Positive `tabindex` (1, 2, etc.) | Replace with `tabindex="0"` or remove | High |
 | `outline: none` without alternative | Add `outline: 2px solid` with `:focus-visible` | High |
 | Missing `<label>` for input | Add `<label>` with matching `for`/`id` | High |
@@ -37,6 +36,9 @@ These are safe, deterministic fixes with no risk of breaking behavior:
 | New tab link without warning | Add `<span class="sr-only">(opens in new tab)</span>` | High |
 | Missing `scope` on `<th>` | Add `scope="col"` or `scope="row"` | High |
 | Missing `type` on `<button>` | Add `type="button"` (prevents accidental form submission) | High |
+| Decorative image already marked but missing `alt` | Add `alt=""` only when already `aria-hidden="true"`, `role="presentation"`, or `role="none"` | High |
+
+**Never** auto-fix a bare `<img>` missing `alt` with `alt=""`. That can silence content images. Treat unknown missing-alt as human-judgment.
 
 ### Human-Judgment (show fix, ask for approval)
 
@@ -44,6 +46,7 @@ These require context only the user can provide:
 
 | Issue | Why Human Needed |
 |-------|-----------------|
+| `<img>` (or equivalent) missing `alt` when purpose is unknown | Must confirm decorative vs meaningful; only then `alt=""` or meaningful text |
 | Alt text content for meaningful images | Only user knows the image's purpose |
 | Heading hierarchy restructuring | May affect visual design and content flow |
 | Link text rewriting | Context-dependent, UX copy implications |
@@ -96,11 +99,11 @@ Fix #[n]: [issue description]
 
 ---
 
-## Multi-Agent Reliability
+## Reliability
 
 ### Role
 
-You are a **state-changing agent**. You modify source code files to fix web accessibility issues. Every modification requires user confirmation.
+This skill is a procedure module for `a11y-audit`. This skill may modify source when applying approved fixes. Every modification requires user confirmation.
 
 ### Action Constraints
 
@@ -143,7 +146,7 @@ When Playwright MCP tools are available AND `a11y-audit` provides a dev server U
 
 **After applying each fix batch:**
 
-1. Dispatch `a11y-playwright` via the Task tool with the fix list and dev server URL.
+1. Apply the `a11y-playwright` skill with the fix list and dev server URL.
 2. The verifier runs targeted checks:
    - **Keyboard fix:** Re-runs `run_playwright_keyboard_scan` to confirm the element is now in tab order
    - **Contrast fix:** Re-runs `run_playwright_contrast_scan` on the affected element to confirm ratio meets threshold
@@ -159,7 +162,7 @@ When Playwright MCP tools are available AND `a11y-audit` provides a dev server U
 - If @axe-core/playwright not installed: Only keyboard and accessibility tree checks are available.
 - If dev server URL not provided: Skip all Playwright verification.
 
-### Handoff Transparency
+### Progress Transparency
 
 When used by the a11y-audit agent:
 - **Announce start:** "Applying [N] accessibility fixes to [N] files ([N] auto-fixable, [N] need approval)"

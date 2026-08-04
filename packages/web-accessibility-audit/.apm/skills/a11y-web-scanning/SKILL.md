@@ -11,8 +11,8 @@ user-invocable: false
 | Method | Tool | When to Use |
 |--------|------|-------------|
 | Runtime scan | axe-core CLI | Live URL available (dev server or production) |
-| Code review | Agent specialists | Source code available in workspace |
-| Both | axe-core + agents | Most comprehensive - catches issues from both angles |
+| Code review | Domain skill checklists (via a11y-audit) | Source code available in workspace |
+| Both | axe-core + domain skills | Most comprehensive - catches issues from both angles |
 
 ## Runtime Scanning Commands
 

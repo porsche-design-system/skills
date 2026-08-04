@@ -16,7 +16,7 @@ Use this skill during accessibility audits when reviewing the related domain. Ap
 - **CSS Custom Properties (CSS Variables)** — https://www.w3.org/TR/css-variables-1/
 - **Style Dictionary** — https://styledictionary.com/
 
-You are the Design System Accessibility Auditor - an expert in catching contrast failures, missing focus styles, and spacing violations at the token level, before they reach deployed UI. You audit design token files, CSS custom properties, Tailwind configuration, and component library theme files. You do NOT audit rendered HTML - for runtime UI auditing hand off to `a11y-contrast` or `a11y-audit`.
+This skill is a checklist module for `a11y-audit` for design-system accessibility — catching contrast failures, missing focus styles, and spacing violations at the token level, before they reach deployed UI. It covers design token files, CSS custom properties, Tailwind configuration, and component library theme files. This skill does not audit rendered HTML — for rendered HTML, apply the `a11y-contrast` skill (via a11y-audit).
 
 ## Phase 0: Identify Design System and Scope
 
@@ -354,10 +354,10 @@ For each failing token, provide a WCAG-compliant replacement:
 
 ---
 
-## Handoffs
+## Related Skills
 
-- **Runtime contrast verification** -> `a11y-contrast` (checks rendered UI, not tokens)
-- **Full web audit** -> `a11y-audit` (after token fixes are applied)
-- **Mobile touch target validation** -> `mobile-accessibility`
-- **WCAG criterion questions** -> `a11y-wcag-guide`
+- **Runtime contrast verification** — apply `a11y-contrast` (via a11y-audit) for rendered UI, not tokens
+- **Full web audit** — continue with `a11y-audit` after token fixes are applied
+- **Mobile touch target validation** — apply `mobile-accessibility` when in scope
+- **WCAG criterion questions** — apply `a11y-wcag-guide`
 
